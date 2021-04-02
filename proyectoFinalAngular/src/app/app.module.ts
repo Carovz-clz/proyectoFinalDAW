@@ -6,12 +6,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AltaUsuarioComponent } from './alta-usuario/alta-usuario.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AltaUsuarioComponent
+    AltaUsuarioComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

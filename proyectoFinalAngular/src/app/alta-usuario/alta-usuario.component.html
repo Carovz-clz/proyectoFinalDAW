@@ -15,7 +15,7 @@
                         *ngIf="!formulario.get('nombreUsuario').valid && formulario.get('nombreUsuario').touched">
                         Introduzca su nombre de usuario
                     </span>
-                    <span class="help-block existe" *ngIf="existeUsuario">
+                    <span class="help-block " *ngIf="existeUsuario">
                         El nombre de usuario ya existe, introduzca otro
                     </span>
                 </div>
@@ -64,3 +64,5 @@
 
         </div>
     </div>
+
+    
