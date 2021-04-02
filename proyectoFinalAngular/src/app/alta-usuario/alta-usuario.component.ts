@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Usuario } from '../modelos/usuario.model';
+import { PeticionesService } from '../servicios/peticiones.service';
 
 @Component({
   selector: 'app-alta-usuario',
@@ -10,8 +11,9 @@ import { Usuario } from '../modelos/usuario.model';
 export class AltaUsuarioComponent implements OnInit {
   formulario: FormGroup;
   usuario: Usuario;
+  existeUsuario: boolean = false;
 
-  constructor() { }
+  constructor(private peticionesService: PeticionesService) { }
 
   ngOnInit(): void {
     this.formulario = new FormGroup({
@@ -22,21 +24,44 @@ export class AltaUsuarioComponent implements OnInit {
       'apellidos': new FormControl(null),
       'visible': new FormControl(null)
     });
+
+    this.peticionesService.obtenerTodosLosUsuarios();
+
   }
 
   guardarNuevoUsuario(){
-    let visibilidad = (this.formulario.get('visible').value != null) ? 1 : 0;
+    let idUsuario = this.formulario.get('nombreUsuario').value;    
 
-    this.usuario = {
-      nombreUsuario: this.formulario.get('nombreUsuario').value,
-      correo: this.formulario.get('correo').value,
-      password: this.formulario.get('password').value,
-      nombre: this.formulario.get('nombre').value,
-      apellidos: this.formulario.get('apellidos').value,
-      visible: visibilidad,
-    } 
+    if(!this.comprobarSiUsuarioExiste(idUsuario)){
+      let visibilidad = (this.formulario.get('visible').value != null) ? 1 : 0;
 
-    console.log(this.usuario);
+      this.usuario = {
+        username: idUsuario,      
+        pass: this.formulario.get('password').value,
+        nombre: this.formulario.get('nombre').value,
+        apellidos: this.formulario.get('apellidos').value,
+        email: this.formulario.get('correo').value,      
+        visible: visibilidad,
+        enabled: 1
+      } 
+  
+      console.log(this.usuario);  
+
+      this.peticionesService.insertarNuevoUsuario(this.usuario);
+      this.existeUsuario = false;
+    }else{
+      this.existeUsuario = true;
+    }
+    
+  }
+
+  comprobarSiUsuarioExiste(idUsuario){
+    let indice = this.peticionesService.usuarios.findIndex( usuario => usuario.username === idUsuario) //Busco en array de usuarios si existe el usuario
+    if(indice === -1){ //No existe el usuario
+      return false;
+    }else{
+      return true;
+    }
   }
 
 }
