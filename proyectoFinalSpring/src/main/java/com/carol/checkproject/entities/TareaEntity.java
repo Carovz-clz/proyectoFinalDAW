@@ -35,6 +35,18 @@ public class TareaEntity {
 	public TareaEntity() {
 		super();
 	}
+	
+	
+
+	public TareaEntity(Integer idtarea, Integer idproyecto, String descripcion, Integer realizada) {
+		super();
+		this.idtarea = idtarea;
+		this.idproyecto = idproyecto;
+		this.descripcion = descripcion;
+		this.realizada = realizada;
+	}
+
+
 
 	public TareaEntity(Integer idtarea, ProyectoEntity proyecto, String descripcion, Integer realizada) {
 		super();
