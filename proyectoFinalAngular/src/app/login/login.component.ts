@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { LoginService } from '../servicios/login.service';
 import { PeticionesService } from '../servicios/peticiones.service';
 
 @Component({
@@ -8,9 +10,11 @@ import { PeticionesService } from '../servicios/peticiones.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  sesionIniciada: Observable<boolean>;
+  sesion: boolean = false;  
   formulario: FormGroup;
 
-  constructor(private peticionesService: PeticionesService) { }
+  constructor(private peticionesService: PeticionesService, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.formulario = new FormGroup({
@@ -18,12 +22,13 @@ export class LoginComponent implements OnInit {
       'password': new FormControl(null, [Validators.required, Validators.email])
     });
 
-    this.peticionesService.obtenerTodosLosUsuarios();
-
+    this.sesionIniciada = this.loginService.getSesionIniciada();
+    this.sesionIniciada.subscribe(sesion => this.sesion = sesion);
   }
 
   iniciarSesion(){
     console.log('Sesión inciada');
+    this.loginService.cambiarValorSesion(true);
   }
 
 }
