@@ -14,7 +14,7 @@ CREATE TABLE `proyectofinal`.`users` (
 COMMENT = 'Tabla usuarios';
 
 
-CREATE TABLE `proyectofinal`.`tipo-usuario` (
+CREATE TABLE `proyectofinal`.`tipoUsuario` (
   `id` INT NOT NULL,
   `tipo` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
@@ -44,7 +44,7 @@ CREATE TABLE `proyectofinal`.`proyecto` (
   PRIMARY KEY (`idproyecto`))
 COMMENT = 'Tabla de proyectos';
 
-CREATE TABLE `proyectofinal`.`usuario-proyecto` (
+CREATE TABLE `proyectofinal`.`usuarioProyecto` (
   `idusuario_proyecto` INT NOT NULL AUTO_INCREMENT,
   `id_proyecto` INT NOT NULL,
   `usuario` VARCHAR(50) NOT NULL,
@@ -65,43 +65,38 @@ CREATE TABLE `proyectofinal`.`usuario-proyecto` (
     ON UPDATE CASCADE,
   CONSTRAINT `tipo_usuario`
     FOREIGN KEY (`tipo_usuario`)
-    REFERENCES `proyectofinal`.`tipo-usuario` (`id`)
+    REFERENCES `proyectofinal`.`tipoUsuario` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 COMMENT = 'Tabla que recoge el tipo de usuario de cada proyecto';
 
 CREATE TABLE `proyectofinal`.`tarea` (
-  `idtarea` INT NOT NULL,
-  `creador` VARCHAR(50) NOT NULL,
+  `idtarea` INT NOT NULL AUTO_INCREMENT,
+  `idproyecto` INT NOT NULL,
   `descripcion` VARCHAR(100) NOT NULL,
   `realizada` TINYINT(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`idtarea`),
-  INDEX `creador_idx` (`creador` ASC) VISIBLE,
-  CONSTRAINT `creador`
-    FOREIGN KEY (`creador`)
-    REFERENCES `proyectofinal`.`users` (`username`)
+  INDEX `idproyecto_idx` (`idproyecto` ASC) VISIBLE,
+  CONSTRAINT `idproyecto`
+    FOREIGN KEY (`idproyecto`)
+    REFERENCES `proyectofinal`.`proyecto` (`idproyecto`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
     
-CREATE TABLE `proyectofinal`.`proyecto-tarea` (
-  `idproyecto_tarea` INT NOT NULL,
-  `id_tarea` INT NOT NULL,
-  `id_proyecto` INT NOT NULL,
-  PRIMARY KEY (`idproyecto_tarea`),
-  INDEX `id_tarea_idx` (`id_tarea` ASC) VISIBLE,
-  INDEX `id_proyecto_idx` (`id_proyecto` ASC) VISIBLE,
-  CONSTRAINT `tarea`
-    FOREIGN KEY (`id_tarea`)
-    REFERENCES `proyectofinal`.`tarea` (`idtarea`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `proyecto`
-    FOREIGN KEY (`id_proyecto`)
-    REFERENCES `proyectofinal`.`proyecto` (`idproyecto`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-COMMENT = 'Tabla que recoge las tareas que pertenecen a cada proyecto';
+    ALTER TABLE `proyectofinal`.`tarea` 
+DROP FOREIGN KEY `idproyecto`;
+ALTER TABLE `proyectofinal`.`tarea` 
+ADD CONSTRAINT `idproyecto`
+  FOREIGN KEY (`idproyecto`)
+  REFERENCES `proyectofinal`.`proyecto` (`idproyecto`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+  
+SET GLOBAL time_zone = '+1:00';
 
+insert into tipoUsuario values (1, 'creador');
+insert into tipoUsuario values (2, 'colaborador');
+    
 
 
 
