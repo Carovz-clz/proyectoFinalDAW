@@ -52,12 +52,16 @@
                     <label class="form-check-label" for="visible">Marque esta casilla si quiere aparecer visible para otros usuarios.</label>
                   </div>
 
-                <button type="submit" class="btn btn-info mt-2">Enviar</button>               
-
-
+                <button type="submit" class="btn btn-info mt-2">Enviar</button>            
             </form>
 
         </div>
+
+        <ng-template #contenido let-modal>
+            <div class="modal-body" data-backdrop="static" data-keyboard="false">        
+                <p>Alta del usuario {{usuario.username}} realizada con éxito.</p>        
+            </div>        
+        </ng-template>
     </div>
 
     

@@ -1,20 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Usuario } from '../modelos/usuario.model';
 import { PeticionesService } from '../servicios/peticiones.service';
-import { catchError } from 'rxjs/operators';
 @Component({
   selector: 'app-alta-usuario',
   templateUrl: './alta-usuario.component.html',
   styleUrls: ['./alta-usuario.component.css']
 })
 export class AltaUsuarioComponent implements OnInit {
+  @ViewChild('contenido', { static: false }) contenidoModal: NgbModalRef;
+  modalRef: NgbModalRef;
   formulario: FormGroup;
   usuario: Usuario;
   existeUsuario: boolean = false;
+  altaCorrecta: boolean = false;
 
-  constructor(private peticionesService: PeticionesService, private router: Router, private ruta: ActivatedRoute) { }
+  constructor(private peticionesService: PeticionesService, private router: Router, private ruta: ActivatedRoute, private modal: NgbModal) { }
 
   ngOnInit(): void {
     this.formulario = new FormGroup({
@@ -43,16 +46,29 @@ export class AltaUsuarioComponent implements OnInit {
     }
 
     console.log(this.usuario);
-    this.peticionesService.insertarNuevoUsuario(this.usuario).subscribe( 
+    this.peticionesService.insertarNuevoUsuario(this.usuario).subscribe(
       response => {
-        console.log('Respuesta: '+response);
-        this.router.navigate(['../'], {relativeTo: this.ruta});
+        this.existeUsuario = false;
+        this.altaCorrecta = true;
+        this.abrirModal();
+        this.volverAInicio();
       },
       error => {
         this.existeUsuario = true;
       }
     );
 
+  }
+
+  volverAInicio() {
+    setTimeout(() => {
+      this.modalRef.close();
+      this.router.navigate(['../'], { relativeTo: this.ruta });
+    }, 2000);
+  }
+
+  abrirModal() {
+    this.modalRef = this.modal.open(this.contenidoModal, { size: 'md', centered: true });
   }
 
 }
