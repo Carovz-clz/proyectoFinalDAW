@@ -9,14 +9,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.carol.checkproject.dao.UsuarioDAO;
 import com.carol.checkproject.entities.UsuarioEntity;
 import com.carol.checkproject.repositorios.UsuarioRepository;
 
 @RestController
 @RequestMapping("/v1")
 public class UsuarioRestController {
+	
 	@Autowired
 	private UsuarioRepository usuarioRepo;
+	
+	@Autowired
+	private UsuarioDAO usuarioDAO;
+	
 	
 	@GetMapping(value= "/usuarios")
 	public Iterable<UsuarioEntity> listarTodosLosUsuarios(){
@@ -24,11 +30,13 @@ public class UsuarioRestController {
 	}
 	
 	@PostMapping(value = "/usuarios")
-	public ResponseEntity<String> insertarUsuario(@RequestBody UsuarioEntity usuario){
+	public ResponseEntity<?> insertarUsuario(@RequestBody UsuarioEntity usuario){
 		
-		usuarioRepo.save(usuario);
-		
-		return new ResponseEntity<>(HttpStatus.OK);
+		if(usuarioDAO.insertarUsuario(usuario)) {
+			return new ResponseEntity<>(usuario, HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+		}
 	}
 	
 }

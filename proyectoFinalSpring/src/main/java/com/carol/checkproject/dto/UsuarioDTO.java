@@ -1,39 +1,21 @@
-package com.carol.checkproject.entities;
+package com.carol.checkproject.dto;
 
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
-@Entity
-@Table(name = "users")
-public class UsuarioEntity {
-	@Id
-	@Column(name = "username")
+public class UsuarioDTO {
+	
 	private String username;
-
-	@Column(name = "password")
 	private String pass;
-
-	@Column(name = "nombre")
 	private String nombre;
-
-	@Column(name = "apellidos")
 	private String apellidos;
-
-	@Column(name = "correo_electronico")
 	private String email;
-
-	@Column(name = "visible")
 	private Integer visible;
-
-	@Column(name = "enabled")
 	private Integer enabled;
-
-	public UsuarioEntity() {
+	
+	public UsuarioDTO() {
 		super();
 	}
 
-	public UsuarioEntity(String username, String pass, String nombre, String apellidos, String email, Integer visible,
+	public UsuarioDTO(String username, String pass, String nombre, String apellidos, String email, Integer visible,
 			Integer enabled) {
 		super();
 		this.username = username;
@@ -100,6 +82,6 @@ public class UsuarioEntity {
 	public void setEnabled(Integer enabled) {
 		this.enabled = enabled;
 	}
-
-
+	
+	
 }
