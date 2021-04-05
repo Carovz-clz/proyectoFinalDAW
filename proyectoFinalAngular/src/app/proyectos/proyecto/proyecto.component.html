@@ -1,0 +1,28 @@
+<div class="row mb-4">
+    <div class="col-8 ml-auto mr-auto">
+        <div class="media bg-light d-flex flex-column  p-3 mt-3">
+            <div class="d-flex flex-row ">
+                <h4 class="text-info">{{ proyecto.nombreProyecto }}</h4>
+                <small class="text-muted ml-2 mt-2"> {{ proyecto.usuario}}</small>
+            </div>
+    
+            <div class="media-body">
+                <h5 class="">Descripción</h5>
+                <p> {{ proyecto.descripcion }} </p>
+                <h5 class="">Progreso</h5>
+                <div class="progress mb-3" style="height:20px;">
+                    <div class="progress-bar bg-info" role="progressbar" style="width:70%;">70%</div>
+                </div>
+                
+                <h5>Tareas</h5>
+                <div class="ml-4">
+                    <div *ngFor="let tarea of tareas; let i = index">
+                        <input type="checkbox" [name]="i">
+                        <label class="ml-1" [for]="i"> {{ tarea.descripcion }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -10,8 +10,9 @@ import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './header/header.component';
 import { InicioComponent } from './inicio/inicio.component';
-import { ProyectoComponent } from './proyecto/proyecto.component';
-import { NuevoProyectoComponent } from './nuevo-proyecto/nuevo-proyecto.component';
+import { ProyectoComponent } from './proyectos/proyecto/proyecto.component';
+import { NuevoProyectoComponent } from './proyectos/nuevo-proyecto/nuevo-proyecto.component';
+import { ProyectosComponent } from './proyectos/proyectos.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { NuevoProyectoComponent } from './nuevo-proyecto/nuevo-proyecto.componen
     HeaderComponent,
     InicioComponent,
     ProyectoComponent,
-    NuevoProyectoComponent
+    NuevoProyectoComponent,
+    ProyectosComponent
   ],
   imports: [
     BrowserModule,

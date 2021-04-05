@@ -14,4 +14,12 @@ export class PeticionesService {
         console.log(nuevoProyecto);
         return this.http.post<any>('http://localhost:8080/checkproject/v1/proyectos', nuevoProyecto);
     }
+
+    obtenerTodosLosProyectos(){
+        return this.http.get<any>('http://localhost:8080/checkproject/v1/proyectos');
+    }
+
+    obtenerTareasDeProyecto(idProyecto){
+        return this.http.get<any>('http://localhost:8080/checkproject/v1/proyectos/'+idProyecto);
+    }
 }
