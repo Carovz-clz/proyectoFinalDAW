@@ -18,9 +18,6 @@ export class PeticionesService {
     }
 
     insertarNuevoUsuario(nuevoUsuario){
-        this.http.post<Usuario>('http://localhost:8080/checkproject/v1/usuarios/', nuevoUsuario)
-        .subscribe(response => {       
-            console.log(response);
-        }); 
+       return this.http.post<any>('http://localhost:8080/checkproject/v1/usuarios/', nuevoUsuario);
     }
 }

@@ -1,13 +1,8 @@
 <div class="container">
-    <div class="row">
-        <div class="col-12 text-center">
-            <h1 class="h4">Alta de usuario</h1>
-        </div>
-    </div>
-
     <div class="row ">
-        <div class="col-7 divFormulario">
+        <div class="col-7 divFormulario mt-5">
             <form [formGroup]="formulario" (ngSubmit)="guardarNuevoUsuario()">
+                <h1 class="h4">Alta de usuario</h1>
                 <div class="form-group">
                     <label for="nombreUsuario">Nombre de usuario</label>
                     <input type="text" id="nombreUsuario" class="form-control" name="nombreUsuario" formControlName="nombreUsuario">
@@ -57,7 +52,7 @@
                     <label class="form-check-label" for="visible">Marque esta casilla si quiere aparecer visible para otros usuarios.</label>
                   </div>
 
-                <button type="submit" class="btn btn-primary mt-2">Enviar</button>               
+                <button type="submit" class="btn btn-info mt-2">Enviar</button>               
 
 
             </form>
