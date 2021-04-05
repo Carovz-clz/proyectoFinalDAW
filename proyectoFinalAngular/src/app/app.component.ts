@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { LoginService } from './servicios/login.service';
 
 @Component({
@@ -7,17 +7,21 @@ import { LoginService } from './servicios/login.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit, OnDestroy{
   title = 'proyectoFinalAngular';
   sesionIniciada: Observable<boolean>;
   sesion: boolean = false;
+  subscripcion: Subscription;
 
   constructor(private loginService: LoginService){}
+  
 
   ngOnInit(): void {
     this.sesionIniciada = this.loginService.getSesionIniciada();
-    this.sesionIniciada.subscribe(sesion => this.sesion = sesion);
+    this.subscripcion = this.sesionIniciada.subscribe(sesion => this.sesion = sesion);
   }
 
-
+  ngOnDestroy(): void {
+    this.subscripcion.unsubscribe();
+  }
 }

@@ -64,6 +64,10 @@ export class NuevoProyectoComponent implements OnInit {
     this.router.navigate(['inicio']);
   }
 
+  borrarTarea(i){
+    (<FormArray>this.formulario.get("tareas")).removeAt(i);
+  }
+
   volverAInicio() {
     setTimeout(() => {
       this.modalRef.close();
