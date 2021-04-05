@@ -3,6 +3,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Proyecto } from '../modelos/proyecto.model';
+import { LoginService } from '../servicios/login.service';
 import { PeticionesService } from '../servicios/peticiones.service';
 
 @Component({
@@ -15,9 +16,10 @@ export class NuevoProyectoComponent implements OnInit {
   @ViewChild('contenido', { static: false }) contenidoModal: NgbModalRef;
   modalRef: NgbModalRef;
   formulario: FormGroup;
+  nombreProyecto = '';
   
 
-  constructor(private peticionesService: PeticionesService, private modal: NgbModal, private router: Router, private ruta: ActivatedRoute) { }
+  constructor(private peticionesService: PeticionesService, private modal: NgbModal, private router: Router, private ruta: ActivatedRoute, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.inicializarFormulario();
@@ -25,7 +27,6 @@ export class NuevoProyectoComponent implements OnInit {
   }
 
   inicializarFormulario(){
-    let tareasArray = new FormArray([]); 
 
     this.formulario = new FormGroup({
       'nombreProyecto': new FormControl(null, Validators.required),
@@ -46,10 +47,16 @@ export class NuevoProyectoComponent implements OnInit {
     let nuevoProyecto = new Proyecto(
       this.formulario.value['nombreProyecto'],
       this.formulario.value['descripcion'],
-      this.formulario.value['tareas']
+      this.formulario.value['tareas'], 
+      this.loginService.getUsuario()
     );
 
-    this.peticionesService.insertarNuevoProyecto(nuevoProyecto);
+    this.peticionesService.insertarNuevoProyecto(nuevoProyecto)
+      .subscribe( response => {
+        this.nombreProyecto = response.nombre;
+        this.abrirModal();
+        this.volverAInicio();
+      });
     this.volverAInicio();
   }
 
@@ -59,8 +66,13 @@ export class NuevoProyectoComponent implements OnInit {
 
   volverAInicio() {
     setTimeout(() => {
+      this.modalRef.close();
       this.router.navigate(['inicio']);
     }, 2000);
+  }
+
+  abrirModal() {
+    this.modalRef = this.modal.open(this.contenidoModal, { size: 'md', centered: true });
   }
 
 }

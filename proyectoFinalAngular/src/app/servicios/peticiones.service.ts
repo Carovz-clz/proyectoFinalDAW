@@ -7,10 +7,11 @@ export class PeticionesService {
     constructor(private http: HttpClient){}
 
     insertarNuevoUsuario(nuevoUsuario){
-       return this.http.post<any>('http://localhost:8080/checkproject/v1/usuarios/', nuevoUsuario);
+       return this.http.post<any>('http://localhost:8080/checkproject/v1/usuarios', nuevoUsuario);
     }
 
     insertarNuevoProyecto(nuevoProyecto){
         console.log(nuevoProyecto);
+        return this.http.post<any>('http://localhost:8080/checkproject/v1/proyectos', nuevoProyecto);
     }
 }

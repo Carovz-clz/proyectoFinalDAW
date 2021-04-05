@@ -1,9 +1,10 @@
 export class Proyecto {
     
     constructor(
-        public nombre: string,
+        public nombreProyecto: string,
         public descripcion: string,
-        public tareas: string[]
+        public tareas: string[],
+        public usuario: string
     ){}
     
   }
