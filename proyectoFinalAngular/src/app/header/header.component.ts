@@ -7,10 +7,12 @@ import { LoginService } from '../servicios/login.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  usuario = '';
 
   constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
+    this.usuario = this.loginService.getUsuario();
   }
 
   cerrarSesion(){

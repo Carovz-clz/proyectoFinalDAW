@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoginService } from '../servicios/login.service';
 import { PeticionesService } from '../servicios/peticiones.service';
@@ -14,12 +15,12 @@ export class LoginComponent implements OnInit {
   sesion: boolean = false;  
   formulario: FormGroup;
 
-  constructor(private peticionesService: PeticionesService, private loginService: LoginService) { }
+  constructor(private peticionesService: PeticionesService, private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
     this.formulario = new FormGroup({
       'nombreUsuario': new FormControl(null, Validators.required),
-      'password': new FormControl(null, [Validators.required, Validators.email])
+      'password': new FormControl(null, Validators.required)
     });
 
     this.sesionIniciada = this.loginService.getSesionIniciada();
@@ -27,8 +28,9 @@ export class LoginComponent implements OnInit {
   }
 
   iniciarSesion(){
-    console.log('Sesión inciada');
+    this.loginService.guardarUsuarioLogeado(this.formulario.get('nombreUsuario').value);
     this.loginService.cambiarValorSesion(true);
+    this.router.navigate(['inicio']);
   }
 
 }

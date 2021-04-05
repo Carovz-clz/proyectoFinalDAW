@@ -52,7 +52,7 @@
                     <label class="form-check-label" for="visible">Marque esta casilla si quiere aparecer visible para otros usuarios.</label>
                   </div>
 
-                <button type="submit" class="btn btn-info mt-2">Enviar</button>            
+                <button type="submit" class="btn btn-info mt-2" [disabled]="!formulario.valid">Enviar</button>            
             </form>
 
         </div>

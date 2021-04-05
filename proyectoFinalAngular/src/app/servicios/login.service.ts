@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 })
 export class LoginService {
   private sesionIniciada = new Subject<boolean>();
+  usuario = '';
   sesion = false;
 
   constructor() { }
@@ -18,5 +19,13 @@ export class LoginService {
 
   getSesionIniciada(){
     return this.sesionIniciada.asObservable();
+  }
+
+  guardarUsuarioLogeado(usuario){
+    this.usuario = usuario;
+  }
+
+  getUsuario(){
+    return this.usuario;
   }
 }

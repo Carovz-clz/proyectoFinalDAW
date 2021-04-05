@@ -9,6 +9,9 @@ import { AltaUsuarioComponent } from './alta-usuario/alta-usuario.component';
 import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './header/header.component';
+import { InicioComponent } from './inicio/inicio.component';
+import { ProyectoComponent } from './proyecto/proyecto.component';
+import { NuevoProyectoComponent } from './nuevo-proyecto/nuevo-proyecto.component';
 
 
 @NgModule({
@@ -16,7 +19,10 @@ import { HeaderComponent } from './header/header.component';
     AppComponent,
     AltaUsuarioComponent,
     LoginComponent,
-    HeaderComponent
+    HeaderComponent,
+    InicioComponent,
+    ProyectoComponent,
+    NuevoProyectoComponent
   ],
   imports: [
     BrowserModule,
