@@ -11,35 +11,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.carol.checkproject.dao.UsuarioDAO;
-import com.carol.checkproject.entities.UsuarioEntity;
-import com.carol.checkproject.repositorios.UsuarioRepository;
+import com.carol.checkproject.dao.ProyectoDAO;
+import com.carol.checkproject.dto.ProyectoDTO;
+import com.carol.checkproject.entities.ProyectoEntity;
+import com.carol.checkproject.repositorios.ProyectoRepository;
 
 @RestController
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RequestMapping("/v1")
-public class UsuarioRestController {
+public class ProyectoRestController {
 	
 	@Autowired
-	private UsuarioRepository usuarioRepo;
+	private ProyectoRepository proyectoRepo;
 	
 	@Autowired
-	private UsuarioDAO usuarioDAO;
+	private ProyectoDAO proyectoDao;
 	
-	
-	@GetMapping(value= "/usuarios")
-	public Iterable<UsuarioEntity> listarTodosLosUsuarios(){
-		return usuarioRepo.findAll();
+	@GetMapping(value= "/proyectos")
+	public Iterable<ProyectoEntity> listarTodosLosProyectos(){
+		return proyectoRepo.findAll();
 	}
 	
-	@PostMapping(value = "/usuarios")
-	public ResponseEntity<?> insertarUsuario(@RequestBody UsuarioEntity usuario){
+	@PostMapping(value = "/proyectos")
+	public ResponseEntity<?> insertarProyecto(@RequestBody ProyectoDTO proyecto){
 		
-		if(usuarioDAO.insertarUsuario(usuario)) {
-			return new ResponseEntity<>(usuario, HttpStatus.OK);
+		if(proyectoDao.insertarProyecto(proyecto)) {
+			return new ResponseEntity<>(proyecto, HttpStatus.OK);
 		}else {
-			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+			return null;
 		}
 	}
-	
+
 }
