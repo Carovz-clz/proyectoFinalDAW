@@ -14,9 +14,12 @@ Requisitos:
 Pasos: 
 	- Ejecutar el script sql para crear la base de datos.
 	- Abrir el proyecto spring con Spring Tool Suite y ejecutarlo como aplicación spring.
-	- Abrir el proyecto Angular en el ide seleccionado, abrir una terminal en dicho proyecto y ejecutar los siguientes comandos:
-		> npm install //Para instalar nodemodules
+	- Abrir el proyecto Angular en el ide seleccionado, abrir una terminal (no necesariamente la que proporciona el ide) en dicho proyecto y ejecutar los siguientes comandos:
+		> npm install -g @angular/cli  //Para instalar angular cli
+		> npm install  o npm install npm -g  //Para instalar nodemodules o actualizar en caso de que ya esté instalado
 		> npm install --save bootstrap@4 //Para añadir los paquetes de bootstrap
 	    > ng add @ng-bootstrap/ng-bootstrap //Para añadir los paquetes necesarios para los modales
+	    > ng serve //Para compilar y ejecutar el código
+	-Abrir un navegador e introducir la dirección http://localhost:4200/
 
 
