@@ -30,7 +30,7 @@
             <div class="divProyectos">
                 <app-proyecto
                     *ngFor="let proyectoEl of proyectos |filtroNombreProyecto:filtroNombre |filtroDescripcion:filtroDescripcion"
-                    [proyecto]="proyectoEl" [eliminarProyecto]="true"></app-proyecto>
+                    [proyecto]="proyectoEl" [eliminar]="true"></app-proyecto>
             </div>
         </div>
     </div>

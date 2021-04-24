@@ -1,7 +1,12 @@
 <div class="container">
     <div class="row ">
+        <div class="col-12 spinner text-center" *ngIf="cargando">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
         <div class="col-7 divFormulario mt-5">
-            <form [formGroup]="formulario" (ngSubmit)="guardarNuevoProyecto()">
+            
+                       
+            <form [formGroup]="formulario" (ngSubmit)="guardarNuevoProyecto()" *ngIf="!cargando">
                 <h1 class="h4">Nuevo Proyecto</h1>
                 <div class="form-group">
                     <label for="nombreProyecto">Nombre del proyecto</label>
@@ -55,11 +60,12 @@
 
         </div>
 
-        <ng-template #contenido let-modal>
+        <ng-template #contenido let-modal>           
             <div class="modal-body" data-backdrop="static" data-keyboard="false">
                 <p>Proyecto {{ nombreProyecto }} creado con éxito.</p>
             </div>
         </ng-template>
+
 
     </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Proyecto } from 'src/app/shared/modelos/proyecto.model';
 import { PeticionesService } from 'src/app/shared/servicios/peticiones.service';
 
@@ -9,10 +10,18 @@ import { PeticionesService } from 'src/app/shared/servicios/peticiones.service';
 })
 export class ProyectoComponent implements OnInit {
   @Input() proyecto;
-  @Input() eliminarProyecto = false;
+  @Input() eliminar= false;
 
-  constructor(private peticionesService: PeticionesService) { }
+  constructor(private peticionesService: PeticionesService, private router: Router) { }
 
   ngOnInit(): void {  }
+
+  eliminarProyecto(){
+    this.peticionesService.eliminarProyectoPorId(this.proyecto.idProyecto)
+      .subscribe( response => {
+        console.log(response);
+        this.router.navigate(['/inicio']);
+      })
+  }
 
 }

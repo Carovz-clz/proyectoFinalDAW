@@ -2,7 +2,7 @@
     <div class="col-12 ml-auto mr-auto ">
         <div class="media bg-light d-flex flex-column  p-3 mt-3">
 
-            <button *ngIf="eliminarProyecto" class="btn btn-danger ml-auto btnCerrar" (click)="eliminarProyecto()">X</button>
+            <button *ngIf="eliminar" class="btn btn-danger ml-auto btnCerrar" (click)="eliminarProyecto()">X</button>
 
             <div class="d-flex flex-row ">
                 <h3 class="text-info">{{ proyecto.nombreProyecto }}</h3>

@@ -17,6 +17,7 @@ export class NuevoProyectoComponent implements OnInit {
   modalRef: NgbModalRef;
   formulario: FormGroup;
   nombreProyecto = '';
+  cargando = false;
   
 
   constructor(private peticionesService: PeticionesService, private modal: NgbModal, private router: Router, private ruta: ActivatedRoute, private loginService: LoginService) { }
@@ -69,6 +70,7 @@ export class NuevoProyectoComponent implements OnInit {
   }
 
   volverAInicio() {
+    this.cargando = true;
     setTimeout(() => {
       this.modalRef.close();
       this.router.navigate(['inicio']);

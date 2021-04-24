@@ -11,3 +11,7 @@ input.ng-invalid.ng-touched {
 .enlace{
   cursor: pointer;
 }
+
+.spinner{
+  margin-top: 5rem;
+}
