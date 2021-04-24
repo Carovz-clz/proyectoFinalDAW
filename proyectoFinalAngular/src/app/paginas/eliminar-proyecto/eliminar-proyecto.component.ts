@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/shared/servicios/login.service';
 import { PeticionesService } from 'src/app/shared/servicios/peticiones.service';
 
@@ -12,8 +13,10 @@ export class EliminarProyectoComponent implements OnInit {
   filtroNombre = '';
   filtroDescripcion = '';
   filtroFecha = '';
+  modalConfirmacion = false;
+  idProyecto = 0;
 
-  constructor(private peticionesService: PeticionesService, private loginService: LoginService) { }
+  constructor(private peticionesService: PeticionesService, private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
     this.peticionesService.obtenerTodosLosProyectosDeUsuario(this.loginService.getUsuario())
@@ -21,6 +24,23 @@ export class EliminarProyectoComponent implements OnInit {
         this.proyectos = response;
         console.log(this.proyectos);
       })
+  }
+
+  eliminarProyecto(id){
+    this.idProyecto = id;
+    this.modalConfirmacion = true;
+  }
+
+  confirmarEliminacion(confirmacion){
+    if(confirmacion){      
+      this.peticionesService.eliminarProyectoPorId(this.idProyecto)
+      .subscribe( response => {
+        console.log(response);
+        this.modalConfirmacion = false;
+        this.router.navigate(['/inicio']);
+      })
+    }
+    
   }
 
 }

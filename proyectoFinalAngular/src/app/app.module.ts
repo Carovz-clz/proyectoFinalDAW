@@ -18,6 +18,7 @@ import { BuscadorComponent } from './componentes/buscador/buscador.component';
 import { FiltroNombreProyectoPipe } from './shared/pipes/filtro-nombre-proyecto.pipe';
 import { FiltroDescripcionPipe } from './shared/pipes/filtro-descripcion.pipe';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { ModalConfirmacionComponent } from './componentes/modal-confirmacion/modal-confirmacion.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     BuscadorComponent,
     FiltroNombreProyectoPipe,
     FiltroDescripcionPipe,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    ModalConfirmacionComponent
   ],
   imports: [
     BrowserModule,

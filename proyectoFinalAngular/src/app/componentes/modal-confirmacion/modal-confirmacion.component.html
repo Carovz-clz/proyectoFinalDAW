@@ -1,0 +1,19 @@
+<ng-template #contenido let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Eliminar jugador</h4>
+    </div>
+
+
+    <div class="modal-body" data-backdrop="static" data-keyboard="false">
+
+        <p>Va a eliminar un proyecto, ¿desea continuar con la operación?</p>
+
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="aceptar()">Aceptar</button>
+        <button type="button" class="btn btn-danger" (click)="cancelar()">Cancelar</button>
+    </div>
+
+
+</ng-template>

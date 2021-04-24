@@ -30,8 +30,12 @@
             <div class="divProyectos">
                 <app-proyecto
                     *ngFor="let proyectoEl of proyectos |filtroNombreProyecto:filtroNombre |filtroDescripcion:filtroDescripcion"
-                    [proyecto]="proyectoEl" [eliminar]="true"></app-proyecto>
+                    [proyecto]="proyectoEl" [eliminar]="true" (eliminarP)="eliminarProyecto($event)"></app-proyecto>
             </div>
         </div>
+    </div>
+
+    <div class="row mb-2" *ngIf="modalConfirmacion">
+        <app-modal-confirmacion (confirmar)="confirmarEliminacion($event)"></app-modal-confirmacion>
     </div>
 </div>
