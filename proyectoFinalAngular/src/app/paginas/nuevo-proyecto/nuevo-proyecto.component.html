@@ -5,7 +5,8 @@
                 <h1 class="h4">Nuevo Proyecto</h1>
                 <div class="form-group">
                     <label for="nombreProyecto">Nombre del proyecto</label>
-                    <input type="text" id="nombreProyecto" class="form-control" name="nombreProyecto" formControlName="nombreProyecto">
+                    <input type="text" id="nombreProyecto" class="form-control" name="nombreProyecto"
+                        formControlName="nombreProyecto">
                     <span class="help-block"
                         *ngIf="!formulario.get('nombreProyecto').valid && formulario.get('nombreProyecto').touched">
                         Introduzca su nombre de usuario
@@ -28,9 +29,9 @@
                 <div class="form-group">
                     <label>Tareas:</label>
                     <div formArrayName="tareas">
-                        <div class="row ml-3 d-flex flex-nowrap" *ngFor="let tareaCtrl of tareas; let i = index" >
+                        <div class="row ml-3 d-flex flex-nowrap" *ngFor="let tareaCtrl of tareas; let i = index">
                             <div class="col-xs-9 mb-1">
-                                <input type="text"  class="form-control" name="tarea" [formControlName]="i">
+                                <input type="text" class="form-control" name="tarea" [formControlName]="i">
                             </div>
                             <div class="col-xs-2">
                                 <button type="button" class="btn btn-danger ml-2" (click)="borrarTarea(i)"> X </button>
@@ -39,26 +40,26 @@
 
                         <div class="row">
                             <div class="col-xs-12">
-                                <button type="button" class="btn btn-info mt-2 ml-3" (click)="anadirNuevaTarea()"> Nueva tarea</button>
+                                <button type="button" class="btn btn-info mt-2 ml-3" (click)="anadirNuevaTarea()"> Nueva
+                                    tarea</button>
                             </div>
                         </div>
                     </div>
-                </div>               
-                
+                </div>
+
                 <hr>
 
-                <button type="submit" class="btn btn-info mr-2 " [disabled]="!formulario.valid">Enviar</button> 
-                <button type="button" class="btn btn-danger " (click)="cancelar()">Cancelar</button>            
+                <button type="submit" class="btn btn-info mr-2 " [disabled]="!formulario.valid">Enviar</button>
+                <button type="button" class="btn btn-danger " (click)="cancelar()">Cancelar</button>
             </form>
 
         </div>
 
         <ng-template #contenido let-modal>
-            <div class="modal-body" data-backdrop="static" data-keyboard="false">        
-                <p>Proyecto {{ nombreProyecto }} creado con éxito.</p>        
-            </div>        
+            <div class="modal-body" data-backdrop="static" data-keyboard="false">
+                <p>Proyecto {{ nombreProyecto }} creado con éxito.</p>
+            </div>
         </ng-template>
 
     </div>
-
-    
+</div>

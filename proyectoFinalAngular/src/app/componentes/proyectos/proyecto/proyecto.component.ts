@@ -9,6 +9,7 @@ import { PeticionesService } from 'src/app/shared/servicios/peticiones.service';
 })
 export class ProyectoComponent implements OnInit {
   @Input() proyecto;
+  @Input() eliminarProyecto = false;
 
   constructor(private peticionesService: PeticionesService) { }
 

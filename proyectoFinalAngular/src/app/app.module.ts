@@ -10,9 +10,13 @@ import { LoginComponent } from './paginas/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './componentes/header/header.component';
 import { InicioComponent } from './paginas/inicio/inicio.component';
-import { ProyectoComponent } from './paginas/proyectos/proyecto/proyecto.component';
-import { NuevoProyectoComponent } from './paginas/proyectos/nuevo-proyecto/nuevo-proyecto.component';
-import { ProyectosComponent } from './paginas/proyectos/proyectos.component';
+import { ProyectoComponent } from './componentes/proyectos/proyecto/proyecto.component';
+import { NuevoProyectoComponent } from './paginas/nuevo-proyecto/nuevo-proyecto.component';
+import { ProyectosComponent } from './componentes/proyectos/proyectos.component';
+import { EliminarProyectoComponent } from './paginas/eliminar-proyecto/eliminar-proyecto.component';
+import { BuscadorComponent } from './componentes/buscador/buscador.component';
+import { FiltroNombreProyectoPipe } from './shared/pipes/filtro-nombre-proyecto.pipe';
+import { FiltroDescripcionPipe } from './shared/pipes/filtro-descripcion.pipe';
 
 
 @NgModule({
@@ -24,7 +28,11 @@ import { ProyectosComponent } from './paginas/proyectos/proyectos.component';
     InicioComponent,
     ProyectoComponent,
     NuevoProyectoComponent,
-    ProyectosComponent
+    ProyectosComponent,
+    EliminarProyectoComponent,
+    BuscadorComponent,
+    FiltroNombreProyectoPipe,
+    FiltroDescripcionPipe
   ],
   imports: [
     BrowserModule,

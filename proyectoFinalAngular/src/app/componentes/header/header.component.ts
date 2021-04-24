@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from '../../shared/servicios/login.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { LoginService } from '../../shared/servicios/login.service';
 export class HeaderComponent implements OnInit {
   usuario = '';
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
     this.usuario = this.loginService.getUsuario();
@@ -17,6 +18,7 @@ export class HeaderComponent implements OnInit {
 
   cerrarSesion(){
     this.loginService.cambiarValorSesion(false);
+    this.router.navigate(['/login']);
   }
 
 }
