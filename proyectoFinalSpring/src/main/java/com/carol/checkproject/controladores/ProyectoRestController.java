@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +25,7 @@ import com.carol.checkproject.repositorios.ProyectoRepository;
 import com.carol.checkproject.repositorios.TareaRepository;
 
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.DELETE})
 @RequestMapping("/v1")
 public class ProyectoRestController {
 	
@@ -60,6 +61,13 @@ public class ProyectoRestController {
 		}else {
 			return null;
 		}
+	}
+	
+	@DeleteMapping(value = "/proyectos/{id}")
+	public ResponseEntity<?> EliminarProyectoPorId(@PathVariable("id") Integer id){
+		
+		proyectoRepo.deleteById(id);
+		return new ResponseEntity<String>(HttpStatus.OK);
 	}
 	
 	
