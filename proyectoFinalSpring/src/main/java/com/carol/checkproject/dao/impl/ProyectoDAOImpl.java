@@ -3,13 +3,15 @@ package com.carol.checkproject.dao.impl;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.carol.checkproject.dao.ProyectoDAO;
-import com.carol.checkproject.dto.ProyectoDTO;
+import com.carol.checkproject.dto.ProyectoGetDTO;
+import com.carol.checkproject.dto.ProyectoPostDTO;
 import com.carol.checkproject.entities.ProyectoEntity;
 import com.carol.checkproject.entities.TareaEntity;
 import com.carol.checkproject.entities.UsuarioProyectoEntity;
@@ -31,18 +33,10 @@ public class ProyectoDAOImpl implements ProyectoDAO {
 	
 
 	@Override
-	public Boolean insertarProyecto(ProyectoDTO proyecto) {
+	public Boolean insertarProyecto(ProyectoPostDTO proyecto) {
 		Date cDate = new Date();
 	    String fecha = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
-	    
-//	    List<TareaEntity> listaTareas = new ArrayList<>();
-//	    
-//	    for (String tarea : proyecto.getTareas()) {
-//			listaTareas.add(new TareaEntity(tarea, 0));
-//		}
-//		
-//		ProyectoEntity proyectoNuevo = new ProyectoEntity(proyecto.getNombreProyecto(), fecha, proyecto.getDescripcion(), listaTareas);
-	    
+	    	    
 	    ProyectoEntity proyectoNuevo = new ProyectoEntity(proyecto.getNombreProyecto(), fecha, proyecto.getDescripcion());
 	    proyectoNuevo = proyectoRepo.save(proyectoNuevo);
 	    
@@ -54,6 +48,19 @@ public class ProyectoDAOImpl implements ProyectoDAO {
 	    
 		
 		return true;
+	}
+
+
+	@Override
+	public List<ProyectoGetDTO> obtenerProyectoPorIdUsuario(String idUsuario) {
+		
+		List<ProyectoGetDTO> proyectos = proyectoRepo.obtenerProyectosPorIdUsuario(idUsuario);
+		
+		for (ProyectoGetDTO p : proyectos) {			
+			p.setTareas(tareaRepo.buscarTareas(p.getIdProyecto()));
+		}
+		
+		return proyectos;
 	}
 
 }

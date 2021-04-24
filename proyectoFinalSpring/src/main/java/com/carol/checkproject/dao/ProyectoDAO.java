@@ -1,7 +1,11 @@
 package com.carol.checkproject.dao;
 
-import com.carol.checkproject.dto.ProyectoDTO;
+import java.util.List;
+
+import com.carol.checkproject.dto.ProyectoGetDTO;
+import com.carol.checkproject.dto.ProyectoPostDTO;
 
 public interface ProyectoDAO {
-	Boolean insertarProyecto(ProyectoDTO proyecto);
+	Boolean insertarProyecto(ProyectoPostDTO proyecto);
+	List<ProyectoGetDTO> obtenerProyectoPorIdUsuario(String idUsuario);
 }
