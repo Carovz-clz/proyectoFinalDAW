@@ -19,6 +19,7 @@ import { FiltroNombreProyectoPipe } from './shared/pipes/filtro-nombre-proyecto.
 import { FiltroDescripcionPipe } from './shared/pipes/filtro-descripcion.pipe';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { ModalConfirmacionComponent } from './componentes/modal-confirmacion/modal-confirmacion.component';
+import { MisProyectosComponent } from './paginas/mis-proyectos/mis-proyectos.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ModalConfirmacionComponent } from './componentes/modal-confirmacion/mod
     FiltroNombreProyectoPipe,
     FiltroDescripcionPipe,
     LoadingSpinnerComponent,
-    ModalConfirmacionComponent
+    ModalConfirmacionComponent,
+    MisProyectosComponent
   ],
   imports: [
     BrowserModule,

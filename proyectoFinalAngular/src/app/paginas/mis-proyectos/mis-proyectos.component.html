@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row ">
+        <h1 class="h4 mt-5">Buscar proyecto</h1>
+        <div class="col-12 divBuscador">
+
+            <div class="form-group">
+                <label for="nombreProyecto">Nombre del proyecto</label>
+                <input type="text" id="nombreProyecto" class="form-control" name="nombreProyecto"
+                    [(ngModel)]="filtroNombre">
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <input type="text" id="descripcion" class="form-control" name="descripcion"
+                    [(ngModel)]="filtroDescripcion">
+            </div>
+
+            <div class="form-group">
+                <label for="fecha">Fecha de Creación</label>
+                <input type="text" id="fecha" class="form-control" name="fecha" [(ngModel)]="filtroFecha">
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-center">Mis proyectos</h3>
+            <div class="divProyectos">
+                <app-proyecto
+                    *ngFor="let proyectoEl of proyectos |filtroNombreProyecto:filtroNombre |filtroDescripcion:filtroDescripcion"
+                    [proyecto]="proyectoEl" [eliminar]="true"></app-proyecto>
+            </div>
+        </div>
+    </div>
+
+</div>
