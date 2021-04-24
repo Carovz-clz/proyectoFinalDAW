@@ -16,7 +16,7 @@
                 
                 <h5>Tareas</h5>
                 <div class="ml-4">
-                    <div *ngFor="let tarea of tareas; let i = index">
+                    <div *ngFor="let tarea of proyecto.tareas; let i = index">
                         <input type="checkbox" [name]="i">
                         <label class="ml-1" [for]="i"> {{ tarea.descripcion }}</label>
                     </div>

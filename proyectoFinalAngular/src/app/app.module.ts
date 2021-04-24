@@ -5,14 +5,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AltaUsuarioComponent } from './alta-usuario/alta-usuario.component';
-import { LoginComponent } from './login/login.component';
+import { AltaUsuarioComponent } from './paginas/alta-usuario/alta-usuario.component';
+import { LoginComponent } from './paginas/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HeaderComponent } from './header/header.component';
-import { InicioComponent } from './inicio/inicio.component';
-import { ProyectoComponent } from './proyectos/proyecto/proyecto.component';
-import { NuevoProyectoComponent } from './proyectos/nuevo-proyecto/nuevo-proyecto.component';
-import { ProyectosComponent } from './proyectos/proyectos.component';
+import { HeaderComponent } from './componentes/header/header.component';
+import { InicioComponent } from './paginas/inicio/inicio.component';
+import { ProyectoComponent } from './paginas/proyectos/proyecto/proyecto.component';
+import { NuevoProyectoComponent } from './paginas/proyectos/nuevo-proyecto/nuevo-proyecto.component';
+import { ProyectosComponent } from './paginas/proyectos/proyectos.component';
 
 
 @NgModule({

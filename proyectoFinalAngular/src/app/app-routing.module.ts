@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AltaUsuarioComponent } from './alta-usuario/alta-usuario.component';
-import { InicioComponent } from './inicio/inicio.component';
-import { LoginComponent } from './login/login.component';
-import { NuevoProyectoComponent } from './proyectos/nuevo-proyecto/nuevo-proyecto.component';
+import { AltaUsuarioComponent } from './paginas/alta-usuario/alta-usuario.component';
+import { InicioComponent } from './paginas/inicio/inicio.component';
+import { LoginComponent } from './paginas/login/login.component';
+import { NuevoProyectoComponent } from './paginas/proyectos/nuevo-proyecto/nuevo-proyecto.component';
 
 const routes: Routes = [
   {path:'', component: LoginComponent, pathMatch: 'full'},

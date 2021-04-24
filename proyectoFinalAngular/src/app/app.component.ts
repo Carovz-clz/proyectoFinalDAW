@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { LoginService } from './servicios/login.service';
+import { LoginService } from './shared/servicios/login.service';
 
 @Component({
   selector: 'app-root',

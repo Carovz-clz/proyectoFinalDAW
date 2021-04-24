@@ -15,11 +15,11 @@ export class PeticionesService {
         return this.http.post<any>('http://localhost:8080/checkproject/v1/proyectos', nuevoProyecto);
     }
 
-    obtenerTodosLosProyectos(){
-        return this.http.get<any>('http://localhost:8080/checkproject/v1/proyectos');
+    obtenerTodosLosProyectosDeUsuario(usuario){
+        return this.http.get<any>('http://localhost:8080/checkproject/v1/proyectos/'+usuario);
     }
 
     obtenerTareasDeProyecto(idProyecto){
-        return this.http.get<any>('http://localhost:8080/checkproject/v1/proyectos/'+idProyecto);
+        return this.http.get<any>('http://localhost:8080/checkproject/v1/tareas/'+idProyecto);
     }
 }

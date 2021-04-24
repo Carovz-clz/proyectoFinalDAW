@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Proyecto } from '../modelos/proyecto.model';
-import { PeticionesService } from '../servicios/peticiones.service';
+import { LoginService } from 'src/app/shared/servicios/login.service';
+import { PeticionesService } from '../../shared/servicios/peticiones.service';
 
 @Component({
   selector: 'app-proyectos',
@@ -9,11 +9,14 @@ import { PeticionesService } from '../servicios/peticiones.service';
 })
 export class ProyectosComponent implements OnInit {
   proyectos = [];
+  usuario = '';
 
-  constructor(private peticionesService: PeticionesService) { }
+  constructor(private peticionesService: PeticionesService, private loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.peticionesService.obtenerTodosLosProyectos()
+    this.usuario = this.loginService.getUsuario();
+
+    this.peticionesService.obtenerTodosLosProyectosDeUsuario(this.usuario)
       .subscribe( response => {
         this.proyectos = response;
         console.log(this.proyectos);

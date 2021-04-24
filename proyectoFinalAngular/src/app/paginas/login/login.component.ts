@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { LoginService } from '../servicios/login.service';
-import { PeticionesService } from '../servicios/peticiones.service';
+import { LoginService } from '../../shared/servicios/login.service';
+import { PeticionesService } from '../../shared/servicios/peticiones.service';
 
 @Component({
   selector: 'app-login',

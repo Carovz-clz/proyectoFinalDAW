@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Usuario } from '../modelos/usuario.model';
-import { PeticionesService } from '../servicios/peticiones.service';
+import { Usuario } from '../../shared/modelos/usuario.model';
+import { PeticionesService } from '../../shared/servicios/peticiones.service';
 @Component({
   selector: 'app-alta-usuario',
   templateUrl: './alta-usuario.component.html',
