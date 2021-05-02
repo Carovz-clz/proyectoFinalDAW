@@ -33,7 +33,7 @@ export class AltaUsuarioComponent implements OnInit {
 
   guardarNuevoUsuario() {
     let idUsuario = this.formulario.get('nombreUsuario').value;
-    let visibilidad = (this.formulario.get('visible').value != null) ? 1 : 0;
+    let visibilidad = (this.formulario.get('visible').value == true) ? 1 : 0;
 
     this.usuario = {
       username: idUsuario,
