@@ -14,6 +14,11 @@
 
 .icono {
     font-size: 2rem;
+    cursor: pointer;
+}
+
+.icono:hover {
+    opacity: 0.5;
 }
 
 .tachado {

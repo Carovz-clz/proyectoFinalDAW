@@ -32,11 +32,11 @@
                     </div>
 
     
-                    <div class="iconos col-2">
+                    <div *ngIf="!eliminar" class="iconos col-2">
                         <div class="d-flex flex-column">
-                            <a href="" class="">
+                            <div>
                                 <fa-icon class="icono" [icon]="faFilePdf"></fa-icon>
-                            </a>
+                            </div>
                             <span>Exportar a pdf</span>
                         </div>
                         
@@ -48,9 +48,9 @@
                         </div>
                         
                         <div class="d-flex flex-column">
-                            <a href="">
+                            <div>
                                 <fa-icon class="icono" [icon]="faUserPlus"></fa-icon>
-                            </a>
+                            </div>
                             <span>Colaborador</span>
                         </div>                        
                         
