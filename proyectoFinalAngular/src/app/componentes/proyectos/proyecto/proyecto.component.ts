@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Proyecto } from 'src/app/shared/modelos/proyecto.model';
+import { faFilePdf, faEdit, faUserPlus} from '@fortawesome/free-solid-svg-icons'
 import { PeticionesService } from 'src/app/shared/servicios/peticiones.service';
 
 @Component({
@@ -12,6 +12,9 @@ export class ProyectoComponent implements OnInit {
   @Input() proyecto;
   @Input() eliminar= false;
   @Output() eliminarP = new EventEmitter<Number>();
+  faFilePdf = faFilePdf;
+  faEdit = faEdit;
+  faUserPlus = faUserPlus;
 
   constructor(private peticionesService: PeticionesService, private router: Router) { }
 

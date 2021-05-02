@@ -11,20 +11,52 @@
             </div>
 
             <div class="media-body col-12">
-                <h5 class="">Descripción</h5>
-                <p> {{ proyecto.descripcion }} </p>
-                <h5 class="">Progreso</h5>
-                <div class="progress mb-3" style="height:20px;">
-                    <div class="progress-bar bg-info" role="progressbar" style="width:70%;">70%</div>
-                </div>
+                <div class="row">
+                    <div class="col-10">
+                        <h5 class="">Descripción</h5>
+                        <p> {{ proyecto.descripcion }} </p>
+                        <h5 class="">Progreso</h5>
+                        <div class="progress mb-3" style="height:20px;">
+                            <div class="progress-bar bg-info" role="progressbar" style="width:70%;">70%</div>
+                        </div>
+    
+                        <h5>Tareas</h5>
+                        <div class="ml-4">
+                            <div *ngFor="let tarea of proyecto.tareas; let i = index">
+                                <input type="checkbox" [name]="i">
+                                <label class="ml-1" [for]="i"> {{ tarea.descripcion }}</label>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                    <div class="iconos col-2">
+                        <div class="d-flex flex-column">
+                            <a href="" class="">
+                                <fa-icon class="icono" [icon]="faFilePdf"></fa-icon>
+                            </a>
+                            <span>Exportar a pdf</span>
+                        </div>
+                        
+                        <div class="d-flex flex-column">
+                            <a href="">
+                                <fa-icon class="icono" [icon]="faEdit"></fa-icon>
+                            </a>
+                            <span>Editar</span>
+                        </div>
+                        
+                        <div class="d-flex flex-column">
+                            <a href="">
+                                <fa-icon class="icono" [icon]="faUserPlus"></fa-icon>
+                            </a>
+                            <span>Colaborador</span>
+                        </div>
 
-                <h5>Tareas</h5>
-                <div class="ml-4">
-                    <div *ngFor="let tarea of proyecto.tareas; let i = index">
-                        <input type="checkbox" [name]="i">
-                        <label class="ml-1" [for]="i"> {{ tarea.descripcion }}</label>
+                        
+                        
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>

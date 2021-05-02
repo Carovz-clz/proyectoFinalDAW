@@ -22,6 +22,7 @@ import { ModalConfirmacionComponent } from './componentes/modal-confirmacion/mod
 import { MisProyectosComponent } from './paginas/mis-proyectos/mis-proyectos.component';
 import { FiltroFechaPipe } from './shared/pipes/filtro-fecha.pipe';
 import { DatosUsuarioComponent } from './paginas/datos-usuario/datos-usuario.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { DatosUsuarioComponent } from './paginas/datos-usuario/datos-usuario.com
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    FontAwesomeModule
 
   ],
   providers: [],

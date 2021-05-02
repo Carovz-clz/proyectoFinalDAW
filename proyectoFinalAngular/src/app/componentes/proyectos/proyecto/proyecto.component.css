@@ -1,6 +1,17 @@
-.btnCerrar{
+.btnCerrar {
     width: 30px;
     height: 30px;
     text-align: center;
     padding: auto;
+}
+
+.iconos {
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: center;
+    grid-row-gap: 0.5rem;
+}
+
+.icono {
+    font-size: 2rem;
 }
