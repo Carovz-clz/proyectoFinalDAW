@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,37 +20,45 @@ import com.carol.checkproject.dao.UsuarioDAO;
 import com.carol.checkproject.dto.ProyectoGetDTO;
 import com.carol.checkproject.entities.UsuarioEntity;
 import com.carol.checkproject.repositorios.UsuarioRepository;
+import com.carol.colegio.entities.AlumnoEntity;
 
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT })
 @RequestMapping("/v1")
 public class UsuarioRestController {
-	
+
 	@Autowired
 	private UsuarioRepository usuarioRepo;
-	
+
 	@Autowired
 	private UsuarioDAO usuarioDAO;
-	
-	
-	@GetMapping(value= "/usuarios")
-	public Iterable<UsuarioEntity> listarTodosLosUsuarios(){
+
+	@GetMapping(value = "/usuarios")
+	public Iterable<UsuarioEntity> listarTodosLosUsuarios() {
 		return usuarioRepo.findAll();
 	}
-	
-	@GetMapping(value= "/usuarios/{usuario}")
-	public Optional<UsuarioEntity> listarUsuarioPorId(@PathVariable("usuario") String usuario){
+
+	@GetMapping(value = "/usuarios/{usuario}")
+	public Optional<UsuarioEntity> listarUsuarioPorId(@PathVariable("usuario") String usuario) {
 		return usuarioRepo.findById(usuario);
 	}
-	
+
 	@PostMapping(value = "/usuarios")
-	public ResponseEntity<?> insertarUsuario(@RequestBody UsuarioEntity usuario){
-		
-		if(usuarioDAO.insertarUsuario(usuario)) {
+	public ResponseEntity<?> insertarUsuario(@RequestBody UsuarioEntity usuario) {
+
+		if (usuarioDAO.insertarUsuario(usuario)) {
 			return new ResponseEntity<>(usuario, HttpStatus.OK);
-		}else {
+		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 		}
 	}
-	
+
+	@PutMapping(value = "/usuarios")
+	public ResponseEntity<?> actualizarUsuario(@RequestBody UsuarioEntity usuario) {
+		
+		usuarioRepo.save(usuario);
+		return new ResponseEntity<>(usuario, HttpStatus.OK);
+
+	}
+
 }
