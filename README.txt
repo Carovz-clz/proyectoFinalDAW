@@ -18,8 +18,9 @@ Pasos:
 		> npm install -g @angular/cli  //Para instalar angular cli
 		> npm install  o npm install npm -g  //Para instalar nodemodules o actualizar en caso de que ya esté instalado
 		> npm install --save bootstrap@4 //Para añadir los paquetes de bootstrap
-	    > ng add @ng-bootstrap/ng-bootstrap //Para añadir los paquetes necesarios para los modales
-	    > ng serve //Para compilar y ejecutar el código
+		> ng add @ng-bootstrap/ng-bootstrap //Para añadir los paquetes necesarios para los modales
+		> ng add @fortawesome/angular-fontawesome //elegir la primera opción para los iconos
+	 	> ng serve //Para compilar y ejecutar el código
 	-Abrir un navegador e introducir la dirección http://localhost:4200/
 
 
