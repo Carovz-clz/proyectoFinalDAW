@@ -22,4 +22,8 @@ export class PeticionesService {
     eliminarProyectoPorId(id){
         return this.http.delete<any>('http://localhost:8080/checkproject/v1/proyectos/'+id);
     }
+
+    obtenerDatosUsuario(usuario){
+        return this.http.get<any>('http://localhost:8080/checkproject/v1/usuarios/'+usuario);
+    }
 }

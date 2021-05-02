@@ -21,6 +21,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import { ModalConfirmacionComponent } from './componentes/modal-confirmacion/modal-confirmacion.component';
 import { MisProyectosComponent } from './paginas/mis-proyectos/mis-proyectos.component';
 import { FiltroFechaPipe } from './shared/pipes/filtro-fecha.pipe';
+import { DatosUsuarioComponent } from './paginas/datos-usuario/datos-usuario.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { FiltroFechaPipe } from './shared/pipes/filtro-fecha.pipe';
     LoadingSpinnerComponent,
     ModalConfirmacionComponent,
     MisProyectosComponent,
-    FiltroFechaPipe
+    FiltroFechaPipe,
+    DatosUsuarioComponent
   ],
   imports: [
     BrowserModule,

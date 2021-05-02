@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AltaUsuarioComponent } from './paginas/alta-usuario/alta-usuario.component';
+import { DatosUsuarioComponent } from './paginas/datos-usuario/datos-usuario.component';
 import { EliminarProyectoComponent } from './paginas/eliminar-proyecto/eliminar-proyecto.component';
 import { InicioComponent } from './paginas/inicio/inicio.component';
 import { LoginComponent } from './paginas/login/login.component';
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'inicio', component: InicioComponent},
   {path: 'nuevoproyecto', component: NuevoProyectoComponent},
   {path: 'eliminarproyecto', component: EliminarProyectoComponent},
-  {path: 'misproyectos', component: MisProyectosComponent}
+  {path: 'misproyectos', component: MisProyectosComponent},
+  {path: 'misdatos', component: DatosUsuarioComponent}
 ];
 
 @NgModule({
