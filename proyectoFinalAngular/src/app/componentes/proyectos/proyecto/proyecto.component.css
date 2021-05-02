@@ -15,3 +15,7 @@
 .icono {
     font-size: 2rem;
 }
+
+.tachado {
+    text-decoration: line-through;
+}

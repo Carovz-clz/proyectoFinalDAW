@@ -23,6 +23,7 @@ import { MisProyectosComponent } from './paginas/mis-proyectos/mis-proyectos.com
 import { FiltroFechaPipe } from './shared/pipes/filtro-fecha.pipe';
 import { DatosUsuarioComponent } from './paginas/datos-usuario/datos-usuario.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ModalEditarProyectoComponent } from './componentes/modal-editar-proyecto/modal-editar-proyecto.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ModalConfirmacionComponent,
     MisProyectosComponent,
     FiltroFechaPipe,
-    DatosUsuarioComponent
+    DatosUsuarioComponent,
+    ModalEditarProyectoComponent
   ],
   imports: [
     BrowserModule,

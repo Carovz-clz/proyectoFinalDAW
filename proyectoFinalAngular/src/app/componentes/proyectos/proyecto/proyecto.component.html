@@ -1,5 +1,6 @@
 <div class="row mb-4">
     <div class="col-12 ml-auto mr-auto ">
+        
         <div class="media bg-light d-flex flex-column  p-3 mt-3">
 
             <button *ngIf="eliminar" class="btn btn-danger ml-auto btnCerrar" (click)="eliminarProyecto()">X</button>
@@ -22,13 +23,14 @@
     
                         <h5>Tareas</h5>
                         <div class="ml-4">
-                            <div *ngFor="let tarea of proyecto.tareas; let i = index">
-                                <input type="checkbox" [name]="i">
-                                <label class="ml-1" [for]="i"> {{ tarea.descripcion }}</label>
+                            <div *ngFor="let tarea of tareas; let i = index">
+                                <input type="checkbox" [name]="i" [checked]="tarea.realizada == 1 ? true : false" (click)="cambiarEstadoTarea(i)">
+                                <label class="ml-1" [for]="i"><span [ngClass]="{tachado: tarea.realizada == 1 ? true : false}">{{ tarea.descripcion }}</span> </label>
                             </div>
                         </div>
     
                     </div>
+
     
                     <div class="iconos col-2">
                         <div class="d-flex flex-column">
@@ -39,9 +41,9 @@
                         </div>
                         
                         <div class="d-flex flex-column">
-                            <a href="">
+                            <div (click)="editarProyecto()">
                                 <fa-icon class="icono" [icon]="faEdit"></fa-icon>
-                            </a>
+                            </div>
                             <span>Editar</span>
                         </div>
                         
@@ -50,13 +52,13 @@
                                 <fa-icon class="icono" [icon]="faUserPlus"></fa-icon>
                             </a>
                             <span>Colaborador</span>
-                        </div>
-
-                        
+                        </div>                        
                         
                     </div>
                 </div>
                 
+                <app-modal-editar-proyecto (pararEditar)="cambiarEditar()" *ngIf="editar" [proyecto]="proyecto"></app-modal-editar-proyecto>
+
             </div>
         </div>
     </div>

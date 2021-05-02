@@ -30,4 +30,12 @@ export class PeticionesService {
     editarDatosUsuario(datosUsuario){
         return this.http.put<any>('http://localhost:8080/checkproject/v1/usuarios', datosUsuario);
     }
+
+    cambiarEstadoTarea(tarea){
+        return this.http.put<any>('http://localhost:8080/checkproject/v1/tareas', tarea);
+    }
+
+    editarDatosProyecto(proyecto){
+        return this.http.put<any>('http://localhost:8080/checkproject/v1/proyectos', proyecto);
+    }
 }
