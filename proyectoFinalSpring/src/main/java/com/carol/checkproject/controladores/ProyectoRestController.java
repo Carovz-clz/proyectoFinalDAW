@@ -48,11 +48,6 @@ public class ProyectoRestController {
 		return proyectoDao.obtenerProyectoPorIdUsuario(usuario);
 	}
 	
-	@GetMapping(value= "/tareas/{id}")
-	public Iterable<TareaEntity> buscarTareaPorId(@PathVariable("id") Integer id){
-		return tareaRepo.buscarTareas(id);
-	}
-	
 	@PostMapping(value = "/proyectos")
 	public ResponseEntity<?> insertarProyecto(@RequestBody ProyectoPostDTO proyecto){
 		

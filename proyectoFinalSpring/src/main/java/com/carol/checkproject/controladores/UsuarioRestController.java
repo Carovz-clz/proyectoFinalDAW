@@ -20,7 +20,6 @@ import com.carol.checkproject.dao.UsuarioDAO;
 import com.carol.checkproject.dto.ProyectoGetDTO;
 import com.carol.checkproject.entities.UsuarioEntity;
 import com.carol.checkproject.repositorios.UsuarioRepository;
-import com.carol.colegio.entities.AlumnoEntity;
 
 @RestController
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT })

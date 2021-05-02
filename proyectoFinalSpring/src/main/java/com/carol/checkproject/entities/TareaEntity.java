@@ -19,10 +19,6 @@ public class TareaEntity {
 	@Column(name = "idtarea")
 	private Integer idtarea;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "idproyecto")
-//	private ProyectoEntity proyecto;
-	
 	@Column(name = "idproyecto")
 	private Integer idproyecto;
 	
