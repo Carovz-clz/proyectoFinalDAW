@@ -106,6 +106,18 @@ public class TareaEntity {
 	public void setRealizada(Integer realizada) {
 		this.realizada = realizada;
 	}
+
+
+
+	public Integer getIdproyecto() {
+		return idproyecto;
+	}
+
+
+
+	public void setIdproyecto(Integer idproyecto) {
+		this.idproyecto = idproyecto;
+	}
 	
 	
 }
