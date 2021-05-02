@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { LoginService } from 'src/app/shared/servicios/login.service';
 import { PeticionesService } from 'src/app/shared/servicios/peticiones.service';
 
@@ -19,17 +21,20 @@ export class DatosUsuarioComponent implements OnInit {
     visible: 0
 
   };
+  @ViewChild('contenido', { static: false }) contenidoModal: NgbModalRef;
+  modalRef: NgbModalRef;
   formulario: FormGroup;
-  modoEditar = false;
+  modoEditar:boolean = false;
   existeUsuario: boolean = false;
+  altaCorrecta: boolean = false;
 
-  constructor(private peticionesService: PeticionesService, private loginService: LoginService) { }
+  constructor(private peticionesService: PeticionesService, private loginService: LoginService, private router: Router, private ruta: ActivatedRoute, private modal: NgbModal) { }
 
   ngOnInit(): void {
     this.peticionesService.obtenerDatosUsuario(this.loginService.getUsuario())
       .subscribe(response => {
         this.usuario = response;
-        console.log(this.usuario);
+        this.usuario.visible == 1 ? 1 : null; 
       });
 
     this.formulario = new FormGroup({
@@ -42,12 +47,49 @@ export class DatosUsuarioComponent implements OnInit {
     });
   }
 
-  guardarNuevosDatosUsuario() {
-
-  }
 
   habilitarEdicion() {
     this.modoEditar = true;
+    this.asignarValoresFormulario();
+    this.formulario.valid;
+  }
+
+  deshabilitarEdicion(){
+    this.modoEditar = false;
+    this.asignarValoresFormulario();
+    
+  }
+
+  abrirModal() {
+    this.modalRef = this.modal.open(this.contenidoModal, { size: 'md', centered: true });
+  }
+  
+  guardarNuevosDatosUsuario() {
+    let visibilidad = this.usuario.visible;
+
+    this.usuario = {
+      username: this.formulario.get('nombreUsuario').value,
+      pass: this.formulario.get('password').value,
+      nombre: this.formulario.get('nombre').value,
+      apellidos: this.formulario.get('apellidos').value,
+      email: this.formulario.get('correo').value,
+      visible: visibilidad,
+      enabled: 1
+    }
+
+    this.peticionesService.editarDatosUsuario(this.usuario)
+      .subscribe( () => {
+        this.abrirModal();
+        this.volver();
+      });
+  }
+
+  cambiarValorCheckbox(){
+    this.usuario.visible = (this.usuario.visible == 1) ? 0 : 1;
+    
+  }
+
+  asignarValoresFormulario(){
 
     this.formulario.setValue(
       { 'nombreUsuario': this.usuario.username, 
@@ -57,8 +99,13 @@ export class DatosUsuarioComponent implements OnInit {
         'apellidos': this.usuario.apellidos,
         'visible': this.usuario.visible 
       });
+  }
 
-    this.formulario.valid;
+  volver() {
+    setTimeout(() => {
+      this.modalRef.close();
+      this.modoEditar = false;
+    }, 2000);
   }
 
 }
