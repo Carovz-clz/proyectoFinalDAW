@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,7 +26,7 @@ import com.carol.checkproject.repositorios.ProyectoRepository;
 import com.carol.checkproject.repositorios.TareaRepository;
 
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.DELETE})
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
 @RequestMapping("/v1")
 public class ProyectoRestController {
 	
@@ -52,6 +53,16 @@ public class ProyectoRestController {
 	public ResponseEntity<?> insertarProyecto(@RequestBody ProyectoPostDTO proyecto){
 		
 		if(proyectoDao.insertarProyecto(proyecto)) {
+			return new ResponseEntity<>(proyecto, HttpStatus.OK);
+		}else {
+			return null;
+		}
+	}
+	
+	@PutMapping(value = "/proyectos")
+	public ResponseEntity<?> editarProyecto(@RequestBody ProyectoPostDTO proyecto){
+		
+		if(proyectoDao.editarDatosProyecto(proyecto)) {
 			return new ResponseEntity<>(proyecto, HttpStatus.OK);
 		}else {
 			return null;

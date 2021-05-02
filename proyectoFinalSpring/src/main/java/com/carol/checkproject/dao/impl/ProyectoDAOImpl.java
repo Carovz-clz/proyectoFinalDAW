@@ -49,6 +49,27 @@ public class ProyectoDAOImpl implements ProyectoDAO {
 		
 		return true;
 	}
+	
+	@Override
+	public Boolean editarDatosProyecto(ProyectoPostDTO proyecto) {
+		Date cDate = new Date();
+	    String fecha = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
+	    
+	    	    
+	    ProyectoEntity proyectoNuevo = new ProyectoEntity(proyecto.getIdproyecto(), proyecto.getNombreProyecto(), proyecto.getFecha(), proyecto.getDescripcion());
+	    proyectoNuevo = proyectoRepo.save(proyectoNuevo);
+	    
+	    List<TareaEntity> tareasABorrar = tareaRepo.buscarTareas(proyectoNuevo.getIdproyecto());
+	    for (TareaEntity tarea : tareasABorrar) {
+			tareaRepo.deleteById(tarea.getIdtarea());
+		}
+	    
+	    for (String tarea : proyecto.getTareas()) {
+			tareaRepo.save(new TareaEntity(proyectoNuevo.getIdproyecto(), tarea, 0));
+		}
+	    		
+		return true;
+	}
 
 
 	@Override
