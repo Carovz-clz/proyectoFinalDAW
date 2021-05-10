@@ -1,3 +1,10 @@
 <div class="container mt-4">
-    <app-proyectos></app-proyectos>
+    <h1 class="h3">Últimos proyectos</h1>
+    <div *ngIf="proyectos.length > 0" class="col-8 ">        
+        <app-proyecto *ngFor="let proyectoEl of proyectos" [proyecto]="proyectoEl"></app-proyecto>
+    </div>
+    
+    <div *ngIf="proyectos.length == 0">        
+        <p>No tiene proyectos actualmente</p>
+    </div>
 </div>

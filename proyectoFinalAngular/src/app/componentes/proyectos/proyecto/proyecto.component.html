@@ -21,8 +21,8 @@
                             <div class="progress-bar bg-info" role="progressbar" style="width:70%;">70%</div>
                         </div>
     
-                        <h5>Tareas</h5>
-                        <div class="ml-4">
+                        <h5 *ngIf="mostrarTareas">Tareas</h5>
+                        <div class="ml-4" *ngIf="mostrarTareas">
                             <div *ngFor="let tarea of tareas; let i = index">
                                 <input type="checkbox" [name]="i" [checked]="tarea.realizada == 1 ? true : false" (click)="cambiarEstadoTarea(i)">
                                 <label class="ml-1" [for]="i"><span [ngClass]="{tachado: tarea.realizada == 1 ? true : false}">{{ tarea.descripcion }}</span> </label>
@@ -32,7 +32,7 @@
                     </div>
 
     
-                    <div *ngIf="!eliminar" class="iconos col-2">
+                    <div *ngIf="!eliminar && mostrarIconos" class="iconos col-2">
                         <div class="d-flex flex-column">
                             <div>
                                 <fa-icon class="icono" [icon]="faFilePdf"></fa-icon>

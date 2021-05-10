@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/shared/servicios/login.service';
 import { PeticionesService } from '../../shared/servicios/peticiones.service';
 
@@ -8,7 +8,8 @@ import { PeticionesService } from '../../shared/servicios/peticiones.service';
   styleUrls: ['./proyectos.component.css']
 })
 export class ProyectosComponent implements OnInit {
-  proyectos = [];
+  @Input() pagina = '';
+  proyectos: any = [];
   usuario = '';
 
   constructor(private peticionesService: PeticionesService, private loginService: LoginService) { }
@@ -17,10 +18,22 @@ export class ProyectosComponent implements OnInit {
     this.usuario = this.loginService.getUsuario();
 
     this.peticionesService.obtenerTodosLosProyectosDeUsuario(this.usuario)
-      .subscribe( response => {
+      .subscribe(response => {
+
         this.proyectos = response;
+        if (this.proyectos.lenght > 0) {
+          this.proyectos = this.proyectos.sort((a, b) => {
+            var dateA = new Date(a.fecha).getTime();
+            var dateB = new Date(b.fecha).getTime();
+            return dateA < dateB ? 1 : -1;
+          });
+        }
+
+
+
         console.log(this.proyectos);
       })
   }
+
 
 }

@@ -10,7 +10,9 @@ import { PeticionesService } from 'src/app/shared/servicios/peticiones.service';
 })
 export class ProyectoComponent implements OnInit {
   @Input() proyecto;
-  @Input() eliminar= false;
+  @Input() eliminar = false;
+  @Input() mostrarIconos = false;
+  @Input() mostrarTareas = false;
   @Output() eliminarP = new EventEmitter<Number>();
   tareas = [];
   editar = false;
