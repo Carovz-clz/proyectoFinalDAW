@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 
-                <app-modal-editar-proyecto (pararEditar)="cambiarEditar()" *ngIf="editar" [proyecto]="proyecto"></app-modal-editar-proyecto>
+                <app-modal-editar-proyecto (pararEditar)="cambiarEditar()" (proyectoEditado)="guardarProyecto($event)" *ngIf="editar" [proyecto]="proyecto"></app-modal-editar-proyecto>
 
             </div>
         </div>

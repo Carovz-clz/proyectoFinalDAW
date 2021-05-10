@@ -38,4 +38,8 @@ export class PeticionesService {
     editarDatosProyecto(proyecto){
         return this.http.put<any>('http://localhost:8080/checkproject/v1/proyectos', proyecto);
     }
+
+    obtenerTareasPorIdProyecto(id){
+        return this.http.get<any>('http://localhost:8080/checkproject/v1/tareas/'+id);
+    }
 }

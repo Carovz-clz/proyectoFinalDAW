@@ -8,7 +8,7 @@ import { PeticionesService } from 'src/app/shared/servicios/peticiones.service';
   styleUrls: ['./mis-proyectos.component.css']
 })
 export class MisProyectosComponent implements OnInit {
-  proyectos = [];
+  proyectos: any = [];
   filtroNombre = '';
   filtroDescripcion = '';
   filtroFecha = '';
@@ -19,7 +19,16 @@ export class MisProyectosComponent implements OnInit {
     this.peticionesService.obtenerTodosLosProyectosDeUsuario(this.loginService.getUsuario())
     .subscribe( response => {
       this.proyectos = response;
-      console.log(this.proyectos);
+
+        if (this.proyectos.lenght > 0) {
+          this.proyectos = this.proyectos.sort((a, b) => {
+            var dateA = new Date(a.fecha).getTime();
+            var dateB = new Date(b.fecha).getTime();
+            return dateA < dateB ? 1 : -1;
+          });
+        }
+
+        console.log(this.proyectos);
     })
   }
 

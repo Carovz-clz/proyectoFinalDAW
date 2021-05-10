@@ -9,7 +9,7 @@ import { PeticionesService } from 'src/app/shared/servicios/peticiones.service';
   styleUrls: ['./eliminar-proyecto.component.css']
 })
 export class EliminarProyectoComponent implements OnInit {
-  proyectos = [];
+  proyectos: any = [];
   filtroNombre = '';
   filtroDescripcion = '';
   filtroFecha = '';
@@ -20,27 +20,36 @@ export class EliminarProyectoComponent implements OnInit {
 
   ngOnInit(): void {
     this.peticionesService.obtenerTodosLosProyectosDeUsuario(this.loginService.getUsuario())
-      .subscribe( response => {
+      .subscribe(response => {
         this.proyectos = response;
+
+        if (this.proyectos.lenght > 0) {
+          this.proyectos = this.proyectos.sort((a, b) => {
+            var dateA = new Date(a.fecha).getTime();
+            var dateB = new Date(b.fecha).getTime();
+            return dateA < dateB ? 1 : -1;
+          });
+        }
+
         console.log(this.proyectos);
       })
   }
 
-  eliminarProyecto(id){
+  eliminarProyecto(id) {
     this.idProyecto = id;
     this.modalConfirmacion = true;
   }
 
-  confirmarEliminacion(confirmacion){
-    if(confirmacion){      
+  confirmarEliminacion(confirmacion) {
+    if (confirmacion) {
       this.peticionesService.eliminarProyectoPorId(this.idProyecto)
-      .subscribe( response => {
-        console.log(response);
-        this.modalConfirmacion = false;
-        this.router.navigate(['/inicio']);
-      })
+        .subscribe(response => {
+          console.log(response);
+          this.modalConfirmacion = false;
+          this.router.navigate(['/inicio']);
+        })
     }
-    
+
   }
 
 }

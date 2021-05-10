@@ -30,6 +30,7 @@ export class ModalEditarProyectoComponent implements OnInit {
   @ViewChild('contenido', { static: false }) contenidoModal: NgbModalRef;
   @Input() proyecto: Proyecto;
   @Output() pararEditar = new EventEmitter<void>();
+  @Output() proyectoEditado = new EventEmitter<any>();
   modalRef: NgbModalRef;
   formulario: FormGroup;
   cargando = false;
@@ -83,10 +84,13 @@ export class ModalEditarProyectoComponent implements OnInit {
 
     this.peticionesService.editarDatosProyecto(nuevoProyecto)
       .subscribe(response => {
-        console.log(response);
-        this.volverAInicio();
+        this.proyectoEditado.emit(nuevoProyecto);
+        this.modalRef.close();
+        this.pararEditar.emit();
       });
   }
+
+ 
 
   cancelar() {
     this.modalRef.close();
@@ -101,7 +105,7 @@ export class ModalEditarProyectoComponent implements OnInit {
     this.cargando = true;
     setTimeout(() => {
       this.modalRef.close();
-      // this.pararEditar.emit();
+      this.pararEditar.emit();
       this.cargando = true;
       this.router.navigate(['inicio']);
     }, 2000);

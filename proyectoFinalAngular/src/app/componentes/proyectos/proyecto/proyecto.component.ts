@@ -48,4 +48,23 @@ export class ProyectoComponent implements OnInit {
     this.editar = false;
   }
 
+  guardarProyecto(p){
+    console.log(this.proyecto);
+    
+    this.proyecto.nombreProyecto = p.nombreProyecto;
+    this.proyecto.descripcion = p.descripcion;
+
+    this.peticionesService.obtenerTareasPorIdProyecto(this.proyecto.idProyecto)
+    .subscribe( response => {
+      this.tareas = response;
+      this.proyecto.tareas = response;
+    });
+
+    
+
+
+    console.log("modificado ", this.proyecto);
+    console.log("modificado ", this.tareas);
+  }
+
 }
