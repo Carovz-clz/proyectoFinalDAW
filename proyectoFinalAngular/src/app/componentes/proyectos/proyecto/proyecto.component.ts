@@ -48,7 +48,6 @@ export class ProyectoComponent implements OnInit {
 
   asignarEstiloBarraDeProgreso(){
     let tareasCompletadas = 0;
-    console.log(this.tareas);
 
     this.tareas.forEach(element => {
       if (element.realizada == 1){
@@ -56,10 +55,7 @@ export class ProyectoComponent implements OnInit {
       }
     });
 
-    console.log("tareasCompletadas " + tareasCompletadas);
-    console.log("num tareas " + this.tareas.length);
-    let avance = (tareasCompletadas / this.tareas.length) * 100;
-    console.log("avance " + avance);
+    let avance = Math.round((tareasCompletadas / this.tareas.length) * 100) ;
 
     this.porcentaje = avance;
     this.estilo = 'width:'+avance+'%';
@@ -83,13 +79,10 @@ export class ProyectoComponent implements OnInit {
     .subscribe( response => {
       this.tareas = response;
       this.proyecto.tareas = response;
+      this.asignarEstiloBarraDeProgreso();
     });
 
     
-
-
-    console.log("modificado ", this.proyecto);
-    console.log("modificado ", this.tareas);
   }
 
 }

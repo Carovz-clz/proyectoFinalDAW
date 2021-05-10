@@ -36,6 +36,7 @@ export class PeticionesService {
     }
 
     editarDatosProyecto(proyecto){
+        console.log("proyecto a editar", proyecto)
         return this.http.put<any>('http://localhost:8080/checkproject/v1/proyectos', proyecto);
     }
 

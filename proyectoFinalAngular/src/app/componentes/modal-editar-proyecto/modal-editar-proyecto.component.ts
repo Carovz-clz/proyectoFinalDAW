@@ -48,39 +48,68 @@ export class ModalEditarProyectoComponent implements OnInit {
 
   inicializarFormulario() {
     let tareasForm = new FormArray([]);
+    let tareasFormId = new FormArray([]);
+    let tareasFormRealizada = new FormArray([]);
     let aTareas: Tarea[] = this.proyecto.tareas;
+    console.log("tareas form", this.proyecto.tareas);
 
     for (let tarea of aTareas) {
       tareasForm.push(new FormControl(tarea.descripcion, Validators.required));
+      tareasFormId.push(new FormControl(tarea.idtarea));
+      tareasFormRealizada.push(new FormControl(tarea.realizada));
       console.log(tarea);
     }
 
     this.formulario = new FormGroup({
       'nombreProyecto': new FormControl(this.proyecto.nombreProyecto, Validators.required),
       'descripcion': new FormControl(this.proyecto.descripcion, Validators.required),
-      'tareas': tareasForm
+      'tareas': tareasForm,
+      'tareasid': tareasFormId,
+      'realizada': tareasFormRealizada,
     });
+
+
   }
 
   get tareas() {
     return (<FormArray>this.formulario.get("tareas")).controls;
   }
 
+  get tareasid() {
+    return (<FormArray>this.formulario.get("tareasid")).controls;
+  }
+
+  get realizada() {
+    return (<FormArray>this.formulario.get("realizada")).controls;
+  }
+
   anadirNuevaTarea() {
     (<FormArray>this.formulario.get("tareas")).push(new FormControl('', Validators.required));
+    (<FormArray>this.formulario.get("tareasid")).push(new FormControl(0));
+    (<FormArray>this.formulario.get("realizada")).push(new FormControl(0));
   }
 
   guardarCambiosProyecto() {
+    let arrayTareas = [];
+
+    for (let index = 0; index < this.formulario.value['tareas'].length; index++) {
+      arrayTareas.push(
+        {
+          idtarea: this.formulario.value['tareasid'][index], 
+          descripcion: this.formulario.value['tareas'][index], 
+          realizada: this.formulario.value['realizada'][index]});
+    }
+
     let nuevoProyecto = {
       idproyecto: this.proyecto.idProyecto,
       nombreProyecto: this.formulario.value['nombreProyecto'],
       descripcion: this.formulario.value['descripcion'],
-      tareas: this.formulario.value['tareas'],
+      tareasconid: arrayTareas,
       usuario: this.loginService.getUsuario(),
       fecha: this.proyecto.fecha
     };
 
-    console.log(nuevoProyecto);
+    console.log("nuevo Proyecto", nuevoProyecto);
 
     this.peticionesService.editarDatosProyecto(nuevoProyecto)
       .subscribe(response => {
@@ -99,6 +128,8 @@ export class ModalEditarProyectoComponent implements OnInit {
 
   borrarTarea(i) {
     (<FormArray>this.formulario.get("tareas")).removeAt(i);
+    (<FormArray>this.formulario.get("tareasid")).removeAt(i);
+    (<FormArray>this.formulario.get("realizada")).removeAt(i);
   }
 
   volverAInicio() {
