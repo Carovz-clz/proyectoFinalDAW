@@ -9,6 +9,7 @@ public class ProyectoPostDTO {
 	private String nombreProyecto;
 	private String descripcion;
 	private String[] tareas;
+	private TareaDTO[] tareasconid; 
 	private String usuario;
 	private String fecha;
 	
@@ -112,6 +113,18 @@ public class ProyectoPostDTO {
 	}
 
 
+
+	public TareaDTO[] getTareasconid() {
+		return tareasconid;
+	}
+
+
+
+	public void setTareasconid(TareaDTO[] tareasconid) {
+		this.tareasconid = tareasconid;
+	}
+
+	
 
 	
 }

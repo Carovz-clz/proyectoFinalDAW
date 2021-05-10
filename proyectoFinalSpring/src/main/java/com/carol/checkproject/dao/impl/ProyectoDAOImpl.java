@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.carol.checkproject.dao.ProyectoDAO;
 import com.carol.checkproject.dto.ProyectoGetDTO;
 import com.carol.checkproject.dto.ProyectoPostDTO;
+import com.carol.checkproject.dto.TareaDTO;
 import com.carol.checkproject.entities.ProyectoEntity;
 import com.carol.checkproject.entities.TareaEntity;
 import com.carol.checkproject.entities.UsuarioProyectoEntity;
@@ -59,13 +60,14 @@ public class ProyectoDAOImpl implements ProyectoDAO {
 	    ProyectoEntity proyectoNuevo = new ProyectoEntity(proyecto.getIdproyecto(), proyecto.getNombreProyecto(), proyecto.getFecha(), proyecto.getDescripcion());
 	    proyectoNuevo = proyectoRepo.save(proyectoNuevo);
 	    
-	    List<TareaEntity> tareasABorrar = tareaRepo.buscarTareas(proyectoNuevo.getIdproyecto());
-	    for (TareaEntity tarea : tareasABorrar) {
-			tareaRepo.deleteById(tarea.getIdtarea());
-		}
-	    
-	    for (String tarea : proyecto.getTareas()) {
-			tareaRepo.save(new TareaEntity(proyectoNuevo.getIdproyecto(), tarea, 0));
+ 
+	    for (TareaDTO tarea : proyecto.getTareasconid()) {
+	    	if(tarea.getIdtarea() > 0) {
+	    		tareaRepo.save(new TareaEntity(tarea.getIdtarea(), proyectoNuevo.getIdproyecto(), tarea.getDescripcion(), tarea.getRealizada()));
+	    	}else {
+	    		tareaRepo.save(new TareaEntity(proyectoNuevo.getIdproyecto(), tarea.getDescripcion(),tarea.getRealizada()));
+	    	}
+			
 		}
 	    		
 		return true;
