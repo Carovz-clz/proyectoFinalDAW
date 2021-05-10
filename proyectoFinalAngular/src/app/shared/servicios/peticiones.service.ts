@@ -43,4 +43,8 @@ export class PeticionesService {
     obtenerTareasPorIdProyecto(id){
         return this.http.get<any>('http://localhost:8080/checkproject/v1/tareas/'+id);
     }
+
+    eliminarTareaPorId(id){
+        return this.http.delete<any>('http://localhost:8080/checkproject/v1/tareas/'+id);
+    }
 }

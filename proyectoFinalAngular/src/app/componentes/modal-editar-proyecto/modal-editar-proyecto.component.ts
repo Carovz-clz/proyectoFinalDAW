@@ -33,6 +33,7 @@ export class ModalEditarProyectoComponent implements OnInit {
   @Output() proyectoEditado = new EventEmitter<any>();
   modalRef: NgbModalRef;
   formulario: FormGroup;
+  tareasEliminar = [];
   cargando = false;
 
   constructor(private modal: NgbModal, private router: Router, private ruta: ActivatedRoute, private loginService: LoginService, private peticionesService: PeticionesService) { }
@@ -111,6 +112,12 @@ export class ModalEditarProyectoComponent implements OnInit {
 
     console.log("nuevo Proyecto", nuevoProyecto);
 
+    console.log("Tareas a eliminar ", this.tareasEliminar);
+    this.tareasEliminar.forEach(element => {
+      this.peticionesService.eliminarTareaPorId(element)
+      .subscribe();
+    });
+
     this.peticionesService.editarDatosProyecto(nuevoProyecto)
       .subscribe(response => {
         this.proyectoEditado.emit(nuevoProyecto);
@@ -122,6 +129,7 @@ export class ModalEditarProyectoComponent implements OnInit {
  
 
   cancelar() {
+    this.tareasEliminar = [];
     this.modalRef.close();
     this.pararEditar.emit();
   }
@@ -130,6 +138,7 @@ export class ModalEditarProyectoComponent implements OnInit {
     (<FormArray>this.formulario.get("tareas")).removeAt(i);
     (<FormArray>this.formulario.get("tareasid")).removeAt(i);
     (<FormArray>this.formulario.get("realizada")).removeAt(i);
+    this.tareasEliminar.push(this.formulario.value['tareasid'][i]);
   }
 
   volverAInicio() {
