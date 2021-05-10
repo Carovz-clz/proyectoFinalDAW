@@ -19,11 +19,14 @@ export class ProyectoComponent implements OnInit {
   faFilePdf = faFilePdf;
   faEdit = faEdit;
   faUserPlus = faUserPlus;
+  porcentaje = 0;
+  estilo = '';
 
   constructor(private peticionesService: PeticionesService, private router: Router) { }
 
   ngOnInit(): void { 
     this.tareas = this.proyecto.tareas;
+    this.asignarEstiloBarraDeProgreso();
    }
 
   eliminarProyecto(){
@@ -38,6 +41,28 @@ export class ProyectoComponent implements OnInit {
       .subscribe( response => {
         console.log(response);
       });
+
+      this.asignarEstiloBarraDeProgreso();    
+
+  }
+
+  asignarEstiloBarraDeProgreso(){
+    let tareasCompletadas = 0;
+    console.log(this.tareas);
+
+    this.tareas.forEach(element => {
+      if (element.realizada == 1){
+        tareasCompletadas++;
+      }
+    });
+
+    console.log("tareasCompletadas " + tareasCompletadas);
+    console.log("num tareas " + this.tareas.length);
+    let avance = (tareasCompletadas / this.tareas.length) * 100;
+    console.log("avance " + avance);
+
+    this.porcentaje = avance;
+    this.estilo = 'width:'+avance+'%';
   }
 
   editarProyecto(){

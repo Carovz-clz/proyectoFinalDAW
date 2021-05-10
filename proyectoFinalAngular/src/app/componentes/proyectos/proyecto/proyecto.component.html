@@ -18,7 +18,7 @@
                         <p> {{ proyecto.descripcion }} </p>
                         <h5 class="">Progreso</h5>
                         <div class="progress mb-3" style="height:20px;">
-                            <div class="progress-bar bg-info" role="progressbar" style="width:70%;">70%</div>
+                            <div class="progress-bar progress-bar-striped bg-info" role="progressbar" [style]="estilo">{{porcentaje}}%</div>
                         </div>
     
                         <h5 *ngIf="mostrarTareas">Tareas</h5>
