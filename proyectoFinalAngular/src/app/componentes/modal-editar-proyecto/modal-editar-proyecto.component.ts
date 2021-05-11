@@ -135,10 +135,10 @@ export class ModalEditarProyectoComponent implements OnInit {
   }
 
   borrarTarea(i) {
+    this.tareasEliminar.push(this.formulario.value['tareasid'][i]);
     (<FormArray>this.formulario.get("tareas")).removeAt(i);
     (<FormArray>this.formulario.get("tareasid")).removeAt(i);
     (<FormArray>this.formulario.get("realizada")).removeAt(i);
-    this.tareasEliminar.push(this.formulario.value['tareasid'][i]);
   }
 
   volverAInicio() {
