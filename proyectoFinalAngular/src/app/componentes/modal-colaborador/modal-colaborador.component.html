@@ -1,0 +1,24 @@
+<ng-template #contenido let-modal>
+    <div class="modal-header">
+        <h1 class="modal-title h4">Colaboradores</h1>
+    </div>
+
+    <div class="modal-body" data-backdrop="static" data-keyboard="false">
+        <h2 class="h5">Colaboradores del proyecto</h2>
+            <p *ngIf="colaboradores.length == 0">Este proyecto no tiene colaboradores</p>
+            <p *ngFor="let colaborador of colaboradores">{{ colaborador.nombre }} {{ colaborador.apellidos}}</p>
+        <hr>
+        <h2 class="h5">Añadir colaborador</h2>
+        <div class="form-group">
+            <label for="selectColaboradores">Seleccione un colaborador</label>
+            <select name="selectColaboradores" id="selectColaboradores" class="form-control" [(ngModel)]="colaboradorSelect">
+                <option  [value]="element.username" *ngFor="let element of usuariosDisponibles; let i = index">{{ element.nombre }} {{ element.apellidos }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info " (click)="agregarColaborador()">Guardar</button>
+        <button type="button" class="btn btn-danger mr-2" (click)="cancelar()">Cancelar</button>
+    </div>
+</ng-template>

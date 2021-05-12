@@ -36,7 +36,6 @@ export class PeticionesService {
     }
 
     editarDatosProyecto(proyecto){
-        console.log("proyecto a editar", proyecto)
         return this.http.put<any>('http://localhost:8080/checkproject/v1/proyectos', proyecto);
     }
 
@@ -46,5 +45,17 @@ export class PeticionesService {
 
     eliminarTareaPorId(id){
         return this.http.delete<any>('http://localhost:8080/checkproject/v1/tareas/'+id);
+    }
+
+    obtenerTodosLosUsuarios(){
+        return this.http.get<any>('http://localhost:8080/checkproject/v1/usuarios');
+    }
+
+    obtenerTodosLosUsuariosColaboresDeProyecto(idProyecto){
+        return this.http.get<any>('http://localhost:8080/checkproject/v1/usuarios/proyectos/'+idProyecto);
+    }
+
+    agregarNuevoColaboradorAProyecto(usuarioProyecto){
+        return this.http.post<any>('http://localhost:8080/checkproject/v1/usuarios/proyectos/', usuarioProyecto);
     }
 }

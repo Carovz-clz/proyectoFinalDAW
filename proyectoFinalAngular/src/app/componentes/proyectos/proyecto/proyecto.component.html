@@ -48,7 +48,7 @@
                         </div>
                         
                         <div class="d-flex flex-column">
-                            <div>
+                            <div (click)="agregarColaborador()">
                                 <fa-icon class="icono" [icon]="faUserPlus"></fa-icon>
                             </div>
                             <span>Colaborador</span>
@@ -58,7 +58,7 @@
                 </div>
                 
                 <app-modal-editar-proyecto (pararEditar)="cambiarEditar()" (proyectoEditado)="guardarProyecto($event)" *ngIf="editar" [proyecto]="proyecto" ></app-modal-editar-proyecto>
-
+                <app-modal-colaborador (pararColaboradores)="cambiarColaborar()" *ngIf="colaborar" [idProyecto]="proyecto.idProyecto"></app-modal-colaborador>
             </div>
         </div>
     </div>

@@ -40,7 +40,6 @@ export class ModalEditarProyectoComponent implements OnInit {
 
   ngOnInit(): void {
     this.inicializarFormulario();
-
   }
 
   ngAfterViewInit() {
@@ -52,13 +51,11 @@ export class ModalEditarProyectoComponent implements OnInit {
     let tareasFormId = new FormArray([]);
     let tareasFormRealizada = new FormArray([]);
     let aTareas: Tarea[] = this.proyecto.tareas;
-    console.log("tareas form", this.proyecto.tareas);
 
     for (let tarea of aTareas) {
       tareasForm.push(new FormControl(tarea.descripcion, Validators.required));
       tareasFormId.push(new FormControl(tarea.idtarea));
       tareasFormRealizada.push(new FormControl(tarea.realizada));
-      console.log(tarea);
     }
 
     this.formulario = new FormGroup({
@@ -68,8 +65,6 @@ export class ModalEditarProyectoComponent implements OnInit {
       'tareasid': tareasFormId,
       'realizada': tareasFormRealizada,
     });
-
-
   }
 
   get tareas() {
@@ -110,9 +105,6 @@ export class ModalEditarProyectoComponent implements OnInit {
       fecha: this.proyecto.fecha
     };
 
-    console.log("nuevo Proyecto", nuevoProyecto);
-
-    console.log("Tareas a eliminar ", this.tareasEliminar);
     this.tareasEliminar.forEach(element => {
       this.peticionesService.eliminarTareaPorId(element)
       .subscribe();
@@ -125,8 +117,6 @@ export class ModalEditarProyectoComponent implements OnInit {
         this.pararEditar.emit();
       });
   }
-
- 
 
   cancelar() {
     this.tareasEliminar = [];
@@ -141,21 +131,9 @@ export class ModalEditarProyectoComponent implements OnInit {
     (<FormArray>this.formulario.get("realizada")).removeAt(i);
   }
 
-  volverAInicio() {
-    this.cargando = true;
-    setTimeout(() => {
-      this.modalRef.close();
-      this.pararEditar.emit();
-      this.cargando = true;
-      this.router.navigate(['inicio']);
-    }, 2000);
-  }
-
   abrirModal() {
     this.modalRef = this.modal.open(this.contenidoModal, { size: 'md', centered: true });
   }
-
-
 
 
 }

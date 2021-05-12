@@ -24,6 +24,7 @@ import { FiltroFechaPipe } from './shared/pipes/filtro-fecha.pipe';
 import { DatosUsuarioComponent } from './paginas/datos-usuario/datos-usuario.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ModalEditarProyectoComponent } from './componentes/modal-editar-proyecto/modal-editar-proyecto.component';
+import { ModalColaboradorComponent } from './componentes/modal-colaborador/modal-colaborador.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { ModalEditarProyectoComponent } from './componentes/modal-editar-proyect
     MisProyectosComponent,
     FiltroFechaPipe,
     DatosUsuarioComponent,
-    ModalEditarProyectoComponent
+    ModalEditarProyectoComponent,
+    ModalColaboradorComponent
   ],
   imports: [
     BrowserModule,

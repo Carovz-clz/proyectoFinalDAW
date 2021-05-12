@@ -16,6 +16,7 @@ export class ProyectoComponent implements OnInit {
   @Output() eliminarP = new EventEmitter<Number>();
   tareas = [];
   editar = false;
+  colaborar = false;
   faFilePdf = faFilePdf;
   faEdit = faEdit;
   faUserPlus = faUserPlus;
@@ -83,6 +84,14 @@ export class ProyectoComponent implements OnInit {
     });
 
     
+  }
+
+  agregarColaborador(){
+    this.colaborar = true;
+  }
+
+  cambiarColaborar(){
+    this.colaborar = false;
   }
 
 }
