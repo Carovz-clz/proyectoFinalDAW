@@ -1,14 +1,20 @@
 <div class="row mb-4">
     <div class="col-12 ml-auto mr-auto ">
-        
+
         <div class="media bg-light d-flex flex-column  p-3 mt-3">
 
             <button *ngIf="eliminar" class="btn btn-danger ml-auto btnCerrar" (click)="eliminarProyecto()">X</button>
 
-            <div class="d-flex flex-row ">
-                <h3 class="text-info">{{ proyecto.nombreProyecto }}</h3>
-                <small class="text-muted ml-2 mt-2"> {{ proyecto.usuario}}</small>
-                <small class="text-muted ml-2 mt-2"> {{ proyecto.fecha}}</small>
+            <div class="w-100 mb-3 d-flex flex-row justify-content-between">
+                <div class="d-flex flex-row ">
+                    <h3 class="text-info">{{ proyecto.nombreProyecto }}</h3>
+                    <small class="text-muted ml-2 mt-2 "> {{ proyecto.usuario}}</small>
+                    <small class="text-muted ml-2 mt-2"> {{ proyecto.fecha}}</small>
+                </div>
+                <div>
+                    <small *ngIf="proyecto.tipoUsuario == 1 && !eliminar" class=" ml-2 mt-10 p-1 bg-dark text-light"> Propietario </small>
+                    <small *ngIf="proyecto.tipoUsuario == 2 && !eliminar" class=" ml-2 mt-2 p-1 bg-dark text-light"> Colaborador </small>
+                </div>
             </div>
 
             <div class="media-body col-12">
@@ -18,20 +24,24 @@
                         <p> {{ proyecto.descripcion }} </p>
                         <h5 class="">Progreso</h5>
                         <div class="progress mb-3" style="height:20px;">
-                            <div class="progress-bar progress-bar-striped bg-info" role="progressbar" [style]="estilo">{{porcentaje}}%</div>
+                            <div class="progress-bar progress-bar-striped bg-info" role="progressbar" [style]="estilo">
+                                {{porcentaje}}%</div>
                         </div>
-    
+
                         <h5 *ngIf="mostrarTareas">Tareas</h5>
                         <div class="ml-4" *ngIf="mostrarTareas">
                             <div *ngFor="let tarea of tareas; let i = index">
-                                <input type="checkbox" [name]="i" [checked]="tarea.realizada == 1 ? true : false" (click)="cambiarEstadoTarea(i)">
-                                <label class="ml-1" [for]="i"><span [ngClass]="{tachado: tarea.realizada == 1 ? true : false}">{{ tarea.descripcion }}</span> </label>
+                                <input type="checkbox" [name]="i" [checked]="tarea.realizada == 1 ? true : false"
+                                    (click)="cambiarEstadoTarea(i)">
+                                <label class="ml-1" [for]="i"><span
+                                        [ngClass]="{tachado: tarea.realizada == 1 ? true : false}">{{ tarea.descripcion
+                                        }}</span> </label>
                             </div>
                         </div>
-    
+
                     </div>
 
-    
+
                     <div *ngIf="!eliminar && mostrarIconos" class="iconos col-2">
                         <div class="d-flex flex-column">
                             <div>
@@ -39,26 +49,28 @@
                             </div>
                             <span>Exportar a pdf</span>
                         </div>
-                        
-                        <div class="d-flex flex-column">
+
+                        <div *ngIf="proyecto.tipoUsuario == 1" class="d-flex flex-column">
                             <div (click)="editarProyecto()">
                                 <fa-icon class="icono" [icon]="faEdit"></fa-icon>
                             </div>
                             <span>Editar</span>
                         </div>
-                        
-                        <div class="d-flex flex-column">
+
+                        <div *ngIf="proyecto.tipoUsuario == 1" class="d-flex flex-column">
                             <div (click)="agregarColaborador()">
                                 <fa-icon class="icono" [icon]="faUserPlus"></fa-icon>
                             </div>
                             <span>Colaborador</span>
-                        </div>                        
-                        
+                        </div>
+
                     </div>
                 </div>
-                
-                <app-modal-editar-proyecto (pararEditar)="cambiarEditar()" (proyectoEditado)="guardarProyecto($event)" *ngIf="editar" [proyecto]="proyecto" ></app-modal-editar-proyecto>
-                <app-modal-colaborador (pararColaboradores)="cambiarColaborar()" *ngIf="colaborar" [idProyecto]="proyecto.idProyecto"></app-modal-colaborador>
+
+                <app-modal-editar-proyecto (pararEditar)="cambiarEditar()" (proyectoEditado)="guardarProyecto($event)"
+                    *ngIf="editar" [proyecto]="proyecto"></app-modal-editar-proyecto>
+                <app-modal-colaborador (pararColaboradores)="cambiarColaborar()" *ngIf="colaborar"
+                    [idProyecto]="proyecto.idProyecto"></app-modal-colaborador>
             </div>
         </div>
     </div>

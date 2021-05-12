@@ -26,6 +26,7 @@ export class ProyectoComponent implements OnInit {
   constructor(private peticionesService: PeticionesService, private router: Router) { }
 
   ngOnInit(): void { 
+    console.log(this.proyecto);
     this.tareas = this.proyecto.tareas;
     this.asignarEstiloBarraDeProgreso();
    }
