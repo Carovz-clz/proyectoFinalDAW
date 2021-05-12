@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.carol.checkproject.dao.UsuarioDAO;
 import com.carol.checkproject.dto.ProyectoGetDTO;
+import com.carol.checkproject.dto.UsuarioDTO;
 import com.carol.checkproject.entities.UsuarioEntity;
 import com.carol.checkproject.repositorios.UsuarioRepository;
 
@@ -41,7 +42,8 @@ public class UsuarioRestController {
 	public Optional<UsuarioEntity> listarUsuarioPorId(@PathVariable("usuario") String usuario) {
 		return usuarioRepo.findById(usuario);
 	}
-
+	
+	
 	@PostMapping(value = "/usuarios")
 	public ResponseEntity<?> insertarUsuario(@RequestBody UsuarioEntity usuario) {
 

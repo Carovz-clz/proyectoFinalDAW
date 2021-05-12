@@ -16,19 +16,11 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 
 	@Override
 	public Boolean insertarUsuario(UsuarioEntity usuario) {
-		if(existeUsuario(usuario.getUsername())) {
+		if(usuarioRepo.buscaUsuarioPorNombreUsuario(usuario.getUsername())!=null) {
 			return false;
 		}else {
 			usuarioRepo.save(usuario);
 			return true;
-		}
-	}
-	
-	private Boolean existeUsuario(String nombreUsuario) {
-		if(usuarioRepo.buscaUsuarioPorNombreUsuario(nombreUsuario)!=null) {
-			return true;
-		}else {
-			return false;
 		}
 	}
 	
