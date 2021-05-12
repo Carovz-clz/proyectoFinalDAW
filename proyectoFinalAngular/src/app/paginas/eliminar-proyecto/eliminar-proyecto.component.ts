@@ -21,7 +21,11 @@ export class EliminarProyectoComponent implements OnInit {
   ngOnInit(): void {
     this.peticionesService.obtenerTodosLosProyectosDeUsuario(this.loginService.getUsuario())
       .subscribe(response => {
-        this.proyectos = response;
+        response.forEach(element => {
+          if(element.tipoUsuario == 1){
+            this.proyectos.push(element);
+          }
+        });
 
         if (this.proyectos.lenght > 0) {
           this.proyectos = this.proyectos.sort((a, b) => {
