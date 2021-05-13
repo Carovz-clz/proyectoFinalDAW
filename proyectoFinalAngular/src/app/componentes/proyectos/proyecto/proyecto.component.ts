@@ -95,4 +95,8 @@ export class ProyectoComponent implements OnInit {
     this.colaborar = false;
   }
 
+  exportar(){
+    this.peticionesService.exportarAPdf(this.proyecto).subscribe();
+  }
+
 }

@@ -44,7 +44,7 @@
 
                     <div *ngIf="!eliminar && mostrarIconos" class="iconos col-2">
                         <div class="d-flex flex-column">
-                            <div>
+                            <div (click)="exportar()">
                                 <fa-icon class="icono" [icon]="faFilePdf"></fa-icon>
                             </div>
                             <span>Exportar a pdf</span>

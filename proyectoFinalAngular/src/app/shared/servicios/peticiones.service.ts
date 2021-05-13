@@ -58,4 +58,8 @@ export class PeticionesService {
     agregarNuevoColaboradorAProyecto(usuarioProyecto){
         return this.http.post<any>('http://localhost:8080/checkproject/v1/usuarios/proyectos/', usuarioProyecto);
     }
+
+    exportarAPdf(proyecto){
+        return this.http.post<any>('http://localhost:8080/checkproject/v1/exportarpdf/',1);
+    }
 }
