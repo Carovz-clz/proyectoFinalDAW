@@ -22,7 +22,7 @@ import com.carol.checkproject.repositorios.UsuarioRepository;
 @RestController
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
 @RequestMapping("/v1")
-public class UsuariosProyectosController {
+public class UsuariosProyectosRestController {
 	@Autowired
 	UsuarioRepository usuarioRepo;
 	
