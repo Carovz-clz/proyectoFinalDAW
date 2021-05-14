@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,27 +33,17 @@ public class ExportarPdfRestController {
 	@Autowired
 	IExportarAPdf exportar;
 
-	@PostMapping(value ="/exportarpdf", produces = MediaType.APPLICATION_PDF_VALUE)
-	public ResponseEntity<InputStreamResource> exportarAPdf(@RequestBody Integer proyecto) throws DocumentException, IOException {
-		ByteArrayInputStream bis = exportar.exportar(1);
+	@GetMapping(value ="/exportarpdf/{id}")
+	public ResponseEntity<?> exportarAPdf(@PathVariable("id") Integer id) throws DocumentException, IOException {
+		ByteArrayInputStream bis = exportar.exportar(id);
 		
 		HttpHeaders headers = new HttpHeaders();
 
-		headers.add("Content-Disposition", "attachment;filename=employees.pdf");
+		headers.add("Content-Disposition", "attachment;filename=proyecto.pdf");
 
 		return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
 				.body(new InputStreamResource(bis));
 		
-		
-//		byte[] contents = Files.readAllBytes(Paths.get("mipdf.pdf"));
-//		
-//		HttpHeaders headers = new HttpHeaders();
-//	    headers.setContentType(MediaType.APPLICATION_PDF);
-//	    // Here you have to set the actual filename of your pdf
-//	    String filename = "proyecto.pdf";
-//	    headers.setContentDispositionFormData(filename, filename);
-//	    headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
-//	    ResponseEntity<byte[]> response = new ResponseEntity<>(contents, headers, HttpStatus.OK);
-//	    return response;
+
 	}
 }
