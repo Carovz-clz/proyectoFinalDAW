@@ -60,6 +60,11 @@ export class PeticionesService {
     }
 
     exportarAPdf(proyecto){
-        return this.http.post<any>('http://localhost:8080/checkproject/v1/exportarpdf/',1);
+        // return this.http.get<any>('http://localhost:8080/checkproject/v1/exportarpdf/');
+        return this.http.get('http://localhost:8080/checkproject/v1/exportarpdf/', { responseType: 'blob'  });
     }
+
+    downloadPDF(url): any {
+        return this.http.get('http://localhost:8080/checkproject/v1/exportarpdf/', { responseType: 'blob'  });
+      }
 }
