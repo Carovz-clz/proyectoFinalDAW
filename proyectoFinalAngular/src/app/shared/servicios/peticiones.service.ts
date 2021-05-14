@@ -19,6 +19,10 @@ export class PeticionesService {
         return this.http.get<any>('http://localhost:8080/checkproject/v1/proyectos/'+usuario);
     }
 
+    obtenerSoloLosProyectosDeUsuarioPropietario(usuario){
+        return this.http.get<any>('http://localhost:8080/checkproject/v1/proyectos/eliminar/'+usuario);
+    }
+
     eliminarProyectoPorId(id){
         return this.http.delete<any>('http://localhost:8080/checkproject/v1/proyectos/'+id);
     }
@@ -59,12 +63,8 @@ export class PeticionesService {
         return this.http.post<any>('http://localhost:8080/checkproject/v1/usuarios/proyectos/', usuarioProyecto);
     }
 
-    exportarAPdf(proyecto){
-        // return this.http.get<any>('http://localhost:8080/checkproject/v1/exportarpdf/');
-        return this.http.get('http://localhost:8080/checkproject/v1/exportarpdf/', { responseType: 'blob'  });
+    exportarAPdf(idProyecto){
+        return this.http.get('http://localhost:8080/checkproject/v1/exportarpdf/'+idProyecto, { responseType: 'blob'  });
     }
 
-    downloadPDF(url): any {
-        return this.http.get('http://localhost:8080/checkproject/v1/exportarpdf/', { responseType: 'blob'  });
-      }
 }

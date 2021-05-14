@@ -17,4 +17,11 @@ public interface ProyectoRepository extends CrudRepository<ProyectoEntity, Integ
 	 		+ "WHERE up.usuario LIKE :usuario ")
 		List<ProyectoGetDTO> obtenerProyectosPorIdUsuario(@Param("usuario") String usuario);
 	
+	@Query(value = "select new com.carol.checkproject.dto.ProyectoGetDTO (p.idproyecto, p.nombre, p.descripcion, up.usuario, up.tipoUsuario, p.fecha) "
+	 		+ "FROM com.carol.checkproject.entities.ProyectoEntity p "
+	 		+ "JOIN com.carol.checkproject.entities.UsuarioProyectoEntity up ON p.idproyecto = up.idproyecto "
+	 		+ "WHERE up.usuario LIKE :usuario "
+	 		+ "AND up.tipoUsuario = 1")
+		List<ProyectoGetDTO> obtenerProyectosPropietarioPorIdUsuario(@Param("usuario") String usuario);
+	
 }

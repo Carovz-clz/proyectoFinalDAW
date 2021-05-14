@@ -22,67 +22,77 @@ import com.carol.checkproject.repositorios.UsuarioProyectoRepository;
 
 @Service
 public class ProyectoDAOImpl implements ProyectoDAO {
-	
+
 	@Autowired
 	private ProyectoRepository proyectoRepo;
-	
+
 	@Autowired
 	private TareaRepository tareaRepo;
-	
+
 	@Autowired
 	private UsuarioProyectoRepository usProyRepo;
-	
 
 	@Override
 	public Boolean insertarProyecto(ProyectoPostDTO proyecto) {
 		Date cDate = new Date();
-	    String fecha = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
-	    	    
-	    ProyectoEntity proyectoNuevo = new ProyectoEntity(proyecto.getNombreProyecto(), fecha, proyecto.getDescripcion());
-	    proyectoNuevo = proyectoRepo.save(proyectoNuevo);
-	    
-	    for (String tarea : proyecto.getTareas()) {
+		String fecha = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
+
+		ProyectoEntity proyectoNuevo = new ProyectoEntity(proyecto.getNombreProyecto(), fecha,
+				proyecto.getDescripcion());
+		proyectoNuevo = proyectoRepo.save(proyectoNuevo);
+
+		for (String tarea : proyecto.getTareas()) {
 			tareaRepo.save(new TareaEntity(proyectoNuevo.getIdproyecto(), tarea, 0));
 		}
-	    
-	    usProyRepo.save(new UsuarioProyectoEntity(proyectoNuevo.getIdproyecto(), proyecto.getUsuario(), 1));
-	    
-		
+
+		usProyRepo.save(new UsuarioProyectoEntity(proyectoNuevo.getIdproyecto(), proyecto.getUsuario(), 1));
+
 		return true;
 	}
-	
+
 	@Override
 	public Boolean editarDatosProyecto(ProyectoPostDTO proyecto) {
 		Date cDate = new Date();
-	    String fecha = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
-	    
-	    	    
-	    ProyectoEntity proyectoNuevo = new ProyectoEntity(proyecto.getIdproyecto(), proyecto.getNombreProyecto(), proyecto.getFecha(), proyecto.getDescripcion());
-	    proyectoNuevo = proyectoRepo.save(proyectoNuevo);
-	    
- 
-	    for (TareaDTO tarea : proyecto.getTareasconid()) {
-	    	if(tarea.getIdtarea() > 0) {
-	    		tareaRepo.save(new TareaEntity(tarea.getIdtarea(), proyectoNuevo.getIdproyecto(), tarea.getDescripcion(), tarea.getRealizada()));
-	    	}else {
-	    		tareaRepo.save(new TareaEntity(proyectoNuevo.getIdproyecto(), tarea.getDescripcion(),tarea.getRealizada()));
-	    	}
-			
+		String fecha = new SimpleDateFormat("yyyy-MM-dd").format(cDate);
+
+		ProyectoEntity proyectoNuevo = new ProyectoEntity(proyecto.getIdproyecto(), proyecto.getNombreProyecto(),
+				proyecto.getFecha(), proyecto.getDescripcion());
+		proyectoNuevo = proyectoRepo.save(proyectoNuevo);
+
+		for (TareaDTO tarea : proyecto.getTareasconid()) {
+			if (tarea.getIdtarea() > 0) {
+				tareaRepo.save(new TareaEntity(tarea.getIdtarea(), proyectoNuevo.getIdproyecto(),
+						tarea.getDescripcion(), tarea.getRealizada()));
+			} else {
+				tareaRepo.save(
+						new TareaEntity(proyectoNuevo.getIdproyecto(), tarea.getDescripcion(), tarea.getRealizada()));
+			}
+
 		}
-	    		
+
 		return true;
 	}
 
-
 	@Override
 	public List<ProyectoGetDTO> obtenerProyectoPorIdUsuario(String idUsuario) {
-		
+
 		List<ProyectoGetDTO> proyectos = proyectoRepo.obtenerProyectosPorIdUsuario(idUsuario);
-		
-		for (ProyectoGetDTO p : proyectos) {			
+
+		for (ProyectoGetDTO p : proyectos) {
 			p.setTareas(tareaRepo.buscarTareas(p.getIdProyecto()));
 		}
-		
+
+		return proyectos;
+	}
+
+	@Override
+	public List<ProyectoGetDTO> obtenerProyectosPropietarioPorIdUsuario(String idUsuario) {
+		List<ProyectoGetDTO> proyectos = proyectoRepo.obtenerProyectosPropietarioPorIdUsuario(idUsuario);
+
+		for (ProyectoGetDTO p : proyectos) {
+			p.setTareas(tareaRepo.buscarTareas(p.getIdProyecto()));
+		}
+
 		return proyectos;
 	}
 

@@ -96,20 +96,13 @@ export class ProyectoComponent implements OnInit {
   }
 
   exportar(){
-    this.peticionesService.exportarAPdf(this.proyecto)
+    this.peticionesService.exportarAPdf(this.proyecto.idProyecto)
     .subscribe(
       response => {
-        //response = new Blob([response], { type: 'application/pdf' });
         const fileURL = URL.createObjectURL(response);
         window.open(fileURL, '_blank');
       }
     );
-  }
-
-    descargarPdf(response) {
-
-    window.open(response, '_blank');
-
   }
 
 }

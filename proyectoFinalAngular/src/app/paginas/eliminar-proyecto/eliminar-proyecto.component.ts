@@ -19,12 +19,11 @@ export class EliminarProyectoComponent implements OnInit {
   constructor(private peticionesService: PeticionesService, private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
-    this.peticionesService.obtenerTodosLosProyectosDeUsuario(this.loginService.getUsuario())
+    this.peticionesService.obtenerSoloLosProyectosDeUsuarioPropietario(this.loginService.getUsuario())
       .subscribe(response => {
         response.forEach(element => {
-          if(element.tipoUsuario == 1){
-            this.proyectos.push(element);
-          }
+          this.proyectos.push(element);
+
         });
 
         if (this.proyectos.lenght > 0) {

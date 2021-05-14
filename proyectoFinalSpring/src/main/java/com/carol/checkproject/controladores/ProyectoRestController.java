@@ -49,6 +49,11 @@ public class ProyectoRestController {
 		return proyectoDao.obtenerProyectoPorIdUsuario(usuario);
 	}
 	
+	@GetMapping(value= "/proyectos/eliminar/{usuario}")
+	public List<ProyectoGetDTO> listarProyectosQuePuedeEliminarPorIdUsuario(@PathVariable("usuario") String usuario){
+		return proyectoDao.obtenerProyectosPropietarioPorIdUsuario(usuario);
+	}
+	
 	@PostMapping(value = "/proyectos")
 	public ResponseEntity<?> insertarProyecto(@RequestBody ProyectoPostDTO proyecto){
 		
