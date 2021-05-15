@@ -49,7 +49,7 @@ public class ProyectoRestController {
 		return proyectoDao.obtenerProyectoPorIdUsuario(usuario);
 	}
 	
-	@GetMapping(value= "/proyectos/eliminar/{usuario}")
+	@GetMapping(value= "/proyectos/propietario/{usuario}")
 	public List<ProyectoGetDTO> listarProyectosQuePuedeEliminarPorIdUsuario(@PathVariable("usuario") String usuario){
 		return proyectoDao.obtenerProyectosPropietarioPorIdUsuario(usuario);
 	}

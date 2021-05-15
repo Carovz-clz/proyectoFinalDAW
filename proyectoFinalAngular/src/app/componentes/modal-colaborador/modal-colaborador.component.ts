@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { LoginService } from 'src/app/shared/servicios/login.service';
 import { PeticionesService } from 'src/app/shared/servicios/peticiones.service';
@@ -18,7 +18,7 @@ export class ModalColaboradorComponent implements OnInit, AfterViewInit {
   colaboradores: any = [];
 
   constructor(private modal: NgbModal, private peticionesService: PeticionesService, private loginService: LoginService) { }
-
+ 
   ngOnInit(): void {
 
     this.peticionesService.obtenerTodosLosUsuariosColaboresDeProyecto(this.idProyecto)
@@ -63,5 +63,6 @@ export class ModalColaboradorComponent implements OnInit, AfterViewInit {
     this.modalRef.close();
     this.pararColaboradores.emit();
   }
+
 
 }

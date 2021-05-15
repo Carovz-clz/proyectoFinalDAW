@@ -13,11 +13,12 @@ import { PeticionesService } from '../../shared/servicios/peticiones.service';
 export class LoginComponent implements OnInit, OnDestroy {
   sesionIniciada: Observable<boolean>;
   subscripcion: Subscription;
-  sesion: boolean = false;  
+  credencialesErroneas = false;
+  sesion: boolean = false;
   formulario: FormGroup;
 
   constructor(private peticionesService: PeticionesService, private loginService: LoginService, private router: Router) { }
-  
+
 
   ngOnInit(): void {
     this.formulario = new FormGroup({
@@ -29,10 +30,21 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscripcion = this.sesionIniciada.subscribe(sesion => this.sesion = sesion);
   }
 
-  iniciarSesion(){
-    this.loginService.guardarUsuarioLogeado(this.formulario.get('nombreUsuario').value);
-    this.loginService.cambiarValorSesion(true);
-    this.router.navigate(['inicio']);
+  iniciarSesion() {
+    this.peticionesService.comprobarCredencialesLogin(this.formulario.get('nombreUsuario').value, this.formulario.get('password').value)
+      .subscribe(
+        response => {
+          console.log("Correcto");
+          this.credencialesErroneas = false;
+          this.loginService.guardarUsuarioLogeado(this.formulario.get('nombreUsuario').value);
+          this.loginService.cambiarValorSesion(true);
+          this.router.navigate(['inicio']);
+        },
+        error => {
+          console.log("Incorrecto");
+          this.credencialesErroneas = true;
+        }
+      );
   }
 
   ngOnDestroy(): void {

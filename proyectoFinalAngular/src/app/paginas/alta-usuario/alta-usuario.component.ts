@@ -45,7 +45,6 @@ export class AltaUsuarioComponent implements OnInit {
       enabled: 1
     }
 
-    console.log(this.usuario);
     this.peticionesService.insertarNuevoUsuario(this.usuario).subscribe(
       response => {
         this.existeUsuario = false;

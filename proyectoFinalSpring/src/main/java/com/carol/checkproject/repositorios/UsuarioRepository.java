@@ -21,6 +21,11 @@ public interface UsuarioRepository extends CrudRepository<UsuarioEntity, String>
 	
 	@Query(value = "select new com.carol.checkproject.dto.UsuarioDTO (usuario.username, usuario.pass, usuario.nombre, usuario.apellidos, usuario.email, usuario.visible, usuario.enabled) "
 			+ "FROM com.carol.checkproject.entities.UsuarioEntity usuario "
+			+ "WHERE  usuario.username LIKE :username AND usuario.pass LIKE :pass")
+			  UsuarioDTO comprobarUsuarioYPassword(@Param("username") String username, @Param("pass") String pass);
+	
+	@Query(value = "select new com.carol.checkproject.dto.UsuarioDTO (usuario.username, usuario.pass, usuario.nombre, usuario.apellidos, usuario.email, usuario.visible, usuario.enabled) "
+			+ "FROM com.carol.checkproject.entities.UsuarioEntity usuario "
 			+ "JOIN com.carol.checkproject.entities.UsuarioProyectoEntity up ON usuario.username = up.usuario "
 			+ "WHERE  up.tipoUsuario = 2 AND up.idproyecto = :id_proyecto ")
 			List<UsuarioDTO>  buscaUsuariosColaboradoresDeProyecto(@Param("id_proyecto") Integer id_proyecto);

@@ -43,12 +43,21 @@ public class UsuarioRestController {
 		return usuarioRepo.findById(usuario);
 	}
 	
+	@GetMapping(value = "/usuarios/{usuario}/{pass}")
+	public ResponseEntity<?> ComprobarLoginUsuario(@PathVariable("usuario") String usuario, @PathVariable("pass") String pass) {
+		if (usuarioDAO.comprobarUsuarioYPassword(usuario, pass)) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
+	
 	
 	@PostMapping(value = "/usuarios")
 	public ResponseEntity<?> insertarUsuario(@RequestBody UsuarioEntity usuario) {
 
 		if (usuarioDAO.insertarUsuario(usuario)) {
-			return new ResponseEntity<>(usuario, HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
 		}

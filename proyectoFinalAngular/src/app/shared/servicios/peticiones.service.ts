@@ -6,6 +6,10 @@ export class PeticionesService {
 
     constructor(private http: HttpClient){}
 
+    comprobarCredencialesLogin(usuario, pass){
+        return this.http.get<any>('http://localhost:8080/checkproject/v1/usuarios/'+usuario+'/'+pass);
+    }
+
     insertarNuevoUsuario(nuevoUsuario){
        return this.http.post<any>('http://localhost:8080/checkproject/v1/usuarios', nuevoUsuario);
     }
@@ -20,7 +24,7 @@ export class PeticionesService {
     }
 
     obtenerSoloLosProyectosDeUsuarioPropietario(usuario){
-        return this.http.get<any>('http://localhost:8080/checkproject/v1/proyectos/eliminar/'+usuario);
+        return this.http.get<any>('http://localhost:8080/checkproject/v1/proyectos/propietario/'+usuario);
     }
 
     eliminarProyectoPorId(id){
