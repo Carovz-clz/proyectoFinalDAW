@@ -1,4 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+.container{
+  min-height: calc(100vh - 6.5rem);
+}
+
+.header{
+  height: 3rem;
+}
+
+.footer{
+  height: 3rem;
+}
 
 input.ng-invalid.ng-touched {
     border: 1px solid red;

@@ -10,9 +10,8 @@ import { LoginComponent } from './paginas/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './componentes/header/header.component';
 import { InicioComponent } from './paginas/inicio/inicio.component';
-import { ProyectoComponent } from './componentes/proyectos/proyecto/proyecto.component';
+import { ProyectoComponent } from './componentes/proyecto/proyecto.component';
 import { NuevoProyectoComponent } from './paginas/nuevo-proyecto/nuevo-proyecto.component';
-import { ProyectosComponent } from './componentes/proyectos/proyectos.component';
 import { EliminarProyectoComponent } from './paginas/eliminar-proyecto/eliminar-proyecto.component';
 import { BuscadorComponent } from './componentes/buscador/buscador.component';
 import { FiltroNombreProyectoPipe } from './shared/pipes/filtro-nombre-proyecto.pipe';
@@ -25,6 +24,7 @@ import { DatosUsuarioComponent } from './paginas/datos-usuario/datos-usuario.com
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ModalEditarProyectoComponent } from './componentes/modal-editar-proyecto/modal-editar-proyecto.component';
 import { ModalColaboradorComponent } from './componentes/modal-colaborador/modal-colaborador.component';
+import { FooterComponent } from './componentes/footer/footer.component';
 
 
 @NgModule({
@@ -36,7 +36,6 @@ import { ModalColaboradorComponent } from './componentes/modal-colaborador/modal
     InicioComponent,
     ProyectoComponent,
     NuevoProyectoComponent,
-    ProyectosComponent,
     EliminarProyectoComponent,
     BuscadorComponent,
     FiltroNombreProyectoPipe,
@@ -47,7 +46,8 @@ import { ModalColaboradorComponent } from './componentes/modal-colaborador/modal
     FiltroFechaPipe,
     DatosUsuarioComponent,
     ModalEditarProyectoComponent,
-    ModalColaboradorComponent
+    ModalColaboradorComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

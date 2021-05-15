@@ -1,8 +1,0 @@
-
-<div *ngIf="proyectos.length > 0  && pagina === 'inicio'">        
-    <app-proyecto *ngFor="let proyectoEl of proyectos" [proyecto]="proyectoEl" ></app-proyecto>
-</div>
-
-<div *ngIf="proyectos.length == 0">        
-    <p>No tiene proyectos actualmente</p>
-</div>

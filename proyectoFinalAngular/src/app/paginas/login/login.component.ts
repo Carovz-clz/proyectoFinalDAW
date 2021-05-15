@@ -34,14 +34,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.peticionesService.comprobarCredencialesLogin(this.formulario.get('nombreUsuario').value, this.formulario.get('password').value)
       .subscribe(
         response => {
-          console.log("Correcto");
           this.credencialesErroneas = false;
           this.loginService.guardarUsuarioLogeado(this.formulario.get('nombreUsuario').value);
           this.loginService.cambiarValorSesion(true);
           this.router.navigate(['inicio']);
         },
         error => {
-          console.log("Incorrecto");
           this.credencialesErroneas = true;
         }
       );

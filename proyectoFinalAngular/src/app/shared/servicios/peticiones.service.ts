@@ -15,7 +15,6 @@ export class PeticionesService {
     }
 
     insertarNuevoProyecto(nuevoProyecto){
-        console.log(nuevoProyecto);
         return this.http.post<any>('http://localhost:8080/checkproject/v1/proyectos', nuevoProyecto);
     }
 

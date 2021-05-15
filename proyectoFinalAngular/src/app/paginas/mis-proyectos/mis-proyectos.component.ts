@@ -28,7 +28,6 @@ export class MisProyectosComponent implements OnInit {
           });
         }
 
-        console.log(this.proyectos);
     })
   }
 
