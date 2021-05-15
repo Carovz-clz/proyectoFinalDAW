@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -9,9 +9,10 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 export class ModalConfirmacionComponent implements OnInit {
   @ViewChild('contenido', {static: false}) contenidoModal: NgbModalRef;
   @Output() confirmar = new EventEmitter<boolean>();
-  modalRef: NgbModalRef;
+  modalRefConfirmacion: NgbModalRef;
+  @Input() texto = '';
 
-  constructor(private modal: NgbModal) { }
+  constructor(private modalConfirmacion: NgbModal) { }
 
   ngOnInit(): void {
   }
@@ -21,17 +22,17 @@ export class ModalConfirmacionComponent implements OnInit {
   }
 
   abrirModal(){
-    this.modalRef = this.modal.open(this.contenidoModal, { size: 'md', centered: true });
+    this.modalRefConfirmacion = this.modalConfirmacion.open(this.contenidoModal, { size: 'md', centered: true });
   }
 
   aceptar(){
     this.confirmar.emit(true);
-    this.modalRef.close();
+    this.modalRefConfirmacion.close();
   }
 
   cancelar(){    
     this.confirmar.emit(false);
-    this.modalRef.close();
+    this.modalRefConfirmacion.close();
   }
 
 }

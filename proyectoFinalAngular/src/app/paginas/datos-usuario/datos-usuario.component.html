@@ -14,7 +14,7 @@
                 <input *ngIf="!modoEditar" type="email" id="correo" class="form-control" name="correo"
                     formControlName="correo" [value]="usuario.email" readonly>
                 <input *ngIf="modoEditar" type="email" id="correo" class="form-control" name="correo"
-                    formControlName="correo" >
+                    formControlName="correo">
                 <span class="help-block" *ngIf="!formulario.get('correo').valid && formulario.get('correo').touched">
                     Introduzca su correo electrónico
                 </span>
@@ -25,7 +25,7 @@
                 <input *ngIf="!modoEditar" type="password" id="password" class="form-control" name="password"
                     formControlName="password" [value]="usuario.pass" readonly>
                 <input *ngIf="modoEditar" type="password" id="password" class="form-control" name="password"
-                    formControlName="password" >
+                    formControlName="password">
 
                 <span class="help-block"
                     *ngIf="!formulario.get('password').valid && formulario.get('password').touched">
@@ -38,7 +38,7 @@
                 <input *ngIf="!modoEditar" type="text" id="nombre" class="form-control" name="nombre"
                     formControlName="nombre" [value]="usuario.nombre" readonly>
                 <input *ngIf="modoEditar" type="text" id="nombre" class="form-control" name="nombre"
-                    formControlName="nombre" >
+                    formControlName="nombre">
             </div>
 
             <div class="form-group">
@@ -46,28 +46,41 @@
                 <input *ngIf="!modoEditar" type="text" id="apellidos" class="form-control" name="apellidos"
                     formControlName="apellidos" [value]="usuario.apellidos" readonly>
                 <input *ngIf="modoEditar" type="text" id="apellidos" class="form-control" name="apellidos"
-                    formControlName="apellidos" >
+                    formControlName="apellidos">
             </div>
 
             <div class="form-check">
                 <input *ngIf="!modoEditar" type="checkbox" class="form-check-input" id="visible" name="visible"
                     [checked]="usuario.visible" readonly>
-                <input *ngIf="modoEditar" type="checkbox" class="form-check-input" id="visible" name="visible" (click)="cambiarValorCheckbox()"  [checked]="usuario.visible == 1 ? true : false">
+                <input *ngIf="modoEditar" type="checkbox" class="form-check-input" id="visible" name="visible"
+                    (click)="cambiarValorCheckbox()" [checked]="usuario.visible == 1 ? true : false">
                 <label class="form-check-label" for="visible">Marque esta casilla si quiere aparecer visible para otros
                     usuarios.</label>
             </div>
 
-            <button *ngIf="!modoEditar" type="button" class="btn btn-info mt-2 mr-2" (click)="habilitarEdicion()">Editar</button>
-            <button *ngIf="modoEditar" type="button" class="btn btn-danger mt-2 mr-2" (click)="deshabilitarEdicion()">Cancelar</button>
-            <button *ngIf="modoEditar" type="submit" class="btn btn-info mt-2" [disabled]="!formulario.valid">Guardar</button>
+            <div class="d-flex justify-content-between mt-2 w-100">
+                <div>
+                    <button *ngIf="!modoEditar" type="button" class="btn btn-info mt-2 mr-2"
+                        (click)="habilitarEdicion()">Editar</button>
+                    <button *ngIf="modoEditar" type="button" class="btn btn-danger mt-2 mr-2"
+                        (click)="deshabilitarEdicion()">Cancelar</button>
+                    <button *ngIf="modoEditar" type="submit" class="btn btn-info mt-2"
+                        [disabled]="!formulario.valid">Guardar</button>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-danger mt-2" (click)="eliminarCuenta()">Eliminar Cuenta</button>
+                </div>
+            </div>
 
         </form>
 
     </div>
 
-    <ng-template #contenido let-modal>
-        <div class="modal-body" data-backdrop="static" data-keyboard="false">        
-            <p>Cambios realizados con éxito.</p>        
-        </div>        
+    <app-modal-confirmacion *ngIf="modalConfirmacion" [texto]="'Va a eliminar su cuenta permanentemente, ¿desea continuar con la operación?'" (confirmar)="confirmarEliminacion($event)"></app-modal-confirmacion>
+
+    <ng-template #contenidoCambios let-modal>
+        <div class="modal-body" data-backdrop="static" data-keyboard="false">
+            <p>Cambios realizados con éxito.</p>
+        </div>
     </ng-template>
 </div>

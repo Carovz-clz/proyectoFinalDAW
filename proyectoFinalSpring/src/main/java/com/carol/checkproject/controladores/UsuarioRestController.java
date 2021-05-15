@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +24,7 @@ import com.carol.checkproject.entities.UsuarioEntity;
 import com.carol.checkproject.repositorios.UsuarioRepository;
 
 @RestController
-@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT })
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE })
 @RequestMapping("/v1")
 public class UsuarioRestController {
 
@@ -69,6 +70,13 @@ public class UsuarioRestController {
 		usuarioRepo.save(usuario);
 		return new ResponseEntity<>(usuario, HttpStatus.OK);
 
+	}
+	
+	@DeleteMapping(value = "/usuarios/{username}")
+	public ResponseEntity<?> EliminarUsuarioPorNombreUsuario(@PathVariable("username") String username){
+		
+		usuarioRepo.deleteById(username);
+		return new ResponseEntity<String>(HttpStatus.OK);
 	}
 
 }

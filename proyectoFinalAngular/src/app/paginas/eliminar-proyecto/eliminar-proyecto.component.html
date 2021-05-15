@@ -36,6 +36,6 @@
     </div>
 
     <div class="row mb-2" *ngIf="modalConfirmacion">
-        <app-modal-confirmacion (confirmar)="confirmarEliminacion($event)"></app-modal-confirmacion>
+        <app-modal-confirmacion [texto]="'Va a eliminar un proyecto, ¿desea continuar con la operación?'" (confirmar)="confirmarEliminacion($event)"></app-modal-confirmacion>
     </div>
 </div>

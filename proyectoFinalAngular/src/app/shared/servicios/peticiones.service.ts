@@ -13,6 +13,14 @@ export class PeticionesService {
     insertarNuevoUsuario(nuevoUsuario){
        return this.http.post<any>('http://localhost:8080/checkproject/v1/usuarios', nuevoUsuario);
     }
+    
+    obtenerDatosUsuario(usuario){
+        return this.http.get<any>('http://localhost:8080/checkproject/v1/usuarios/'+usuario);
+    }
+
+    eliminarUsuario(usuario){
+        return this.http.delete<any>('http://localhost:8080/checkproject/v1/usuarios/'+usuario);
+    }
 
     insertarNuevoProyecto(nuevoProyecto){
         return this.http.post<any>('http://localhost:8080/checkproject/v1/proyectos', nuevoProyecto);
@@ -30,9 +38,6 @@ export class PeticionesService {
         return this.http.delete<any>('http://localhost:8080/checkproject/v1/proyectos/'+id);
     }
 
-    obtenerDatosUsuario(usuario){
-        return this.http.get<any>('http://localhost:8080/checkproject/v1/usuarios/'+usuario);
-    }
 
     editarDatosUsuario(datosUsuario){
         return this.http.put<any>('http://localhost:8080/checkproject/v1/usuarios', datosUsuario);

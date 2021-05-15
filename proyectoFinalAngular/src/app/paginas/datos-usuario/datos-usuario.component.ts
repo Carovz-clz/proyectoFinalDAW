@@ -21,12 +21,12 @@ export class DatosUsuarioComponent implements OnInit {
     visible: 0
 
   };
-  @ViewChild('contenido', { static: false }) contenidoModal: NgbModalRef;
+  @ViewChild('contenidoCambios', { static: false }) contenidoModal: NgbModalRef;
   modalRef: NgbModalRef;
   formulario: FormGroup;
-  modoEditar:boolean = false;
+  modoEditar: boolean = false;
   existeUsuario: boolean = false;
-  altaCorrecta: boolean = false;
+  modalConfirmacion: boolean = false;
 
   constructor(private peticionesService: PeticionesService, private loginService: LoginService, private router: Router, private ruta: ActivatedRoute, private modal: NgbModal) { }
 
@@ -34,7 +34,7 @@ export class DatosUsuarioComponent implements OnInit {
     this.peticionesService.obtenerDatosUsuario(this.loginService.getUsuario())
       .subscribe(response => {
         this.usuario = response;
-        this.usuario.visible == 1 ? 1 : null; 
+        this.usuario.visible == 1 ? 1 : null;
       });
 
     this.formulario = new FormGroup({
@@ -54,16 +54,16 @@ export class DatosUsuarioComponent implements OnInit {
     this.formulario.valid;
   }
 
-  deshabilitarEdicion(){
+  deshabilitarEdicion() {
     this.modoEditar = false;
     this.asignarValoresFormulario();
-    
+
   }
 
   abrirModal() {
     this.modalRef = this.modal.open(this.contenidoModal, { size: 'md', centered: true });
   }
-  
+
   guardarNuevosDatosUsuario() {
     let visibilidad = this.usuario.visible;
 
@@ -78,26 +78,27 @@ export class DatosUsuarioComponent implements OnInit {
     }
 
     this.peticionesService.editarDatosUsuario(this.usuario)
-      .subscribe( () => {
+      .subscribe(() => {
         this.abrirModal();
         this.volver();
       });
   }
 
-  cambiarValorCheckbox(){
+  cambiarValorCheckbox() {
     this.usuario.visible = (this.usuario.visible == 1) ? 0 : 1;
-    
+
   }
 
-  asignarValoresFormulario(){
+  asignarValoresFormulario() {
 
     this.formulario.setValue(
-      { 'nombreUsuario': this.usuario.username, 
+      {
+        'nombreUsuario': this.usuario.username,
         'correo': this.usuario.email,
         'password': this.usuario.pass,
         'nombre': this.usuario.nombre,
         'apellidos': this.usuario.apellidos,
-        'visible': this.usuario.visible 
+        'visible': this.usuario.visible
       });
   }
 
@@ -106,6 +107,24 @@ export class DatosUsuarioComponent implements OnInit {
       this.modalRef.close();
       this.modoEditar = false;
     }, 2000);
+  }
+
+  eliminarCuenta() {
+    this.modalConfirmacion = true;
+  }
+
+  confirmarEliminacion(confirmacion) {
+    if (confirmacion) {
+      this.peticionesService.eliminarUsuario(this.loginService.getUsuario())
+        .subscribe(response => {
+          this.modalConfirmacion = false;
+          this.router.navigate(['/login']);
+        })
+
+    } else {
+      this.modalConfirmacion = false;
+    }
+
   }
 
 }
