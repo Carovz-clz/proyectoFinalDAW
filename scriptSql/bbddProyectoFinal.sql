@@ -1,6 +1,6 @@
-drop database if exists proyectoFinal;
-create database proyectoFinal;
-use proyectoFinal;
+drop database if exists proyectofinal;
+create database proyectofinal;
+use proyectofinal;
 
 CREATE TABLE `proyectofinal`.`users` (
   `username` VARCHAR(50) NOT NULL,
@@ -20,21 +20,6 @@ CREATE TABLE `proyectofinal`.`tipoUsuario` (
   PRIMARY KEY (`id`))
 COMMENT = 'Tipos de usuarios';
 
-CREATE TABLE `proyectofinal`.`authorities` (
-  `idauthorities` INT NOT NULL,
-  `authority` VARCHAR(30) NOT NULL,
-  `username` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`idauthorities`),
-  INDEX `username_idx` (`username` ASC) VISIBLE,
-  CONSTRAINT `username`
-    FOREIGN KEY (`username`)
-    REFERENCES `proyectofinal`.`users` (`username`)
-    ON DELETE CASCADE
-  ON UPDATE CASCADE);
-  
-  ALTER TABLE `proyectofinal`.`authorities` 
-CHANGE COLUMN `idauthorities` `idauthorities` INT(11) NOT NULL AUTO_INCREMENT ;
-
     
 CREATE TABLE `proyectofinal`.`proyecto` (
   `idproyecto` INT NOT NULL AUTO_INCREMENT,
@@ -50,9 +35,6 @@ CREATE TABLE `proyectofinal`.`usuarioProyecto` (
   `usuario` VARCHAR(50) NOT NULL,
   `tipo_usuario` INT NOT NULL,
   PRIMARY KEY (`idusuario_proyecto`),
-  INDEX `id_proyecto_idx` (`id_proyecto` ASC) VISIBLE,
-  INDEX `usuario_idx` (`usuario` ASC) VISIBLE,
-  INDEX `tipo_usuario_idx` (`tipo_usuario` ASC) VISIBLE,
   CONSTRAINT `id_proyecto`
     FOREIGN KEY (`id_proyecto`)
     REFERENCES `proyectofinal`.`proyecto` (`idproyecto`)
@@ -76,22 +58,13 @@ CREATE TABLE `proyectofinal`.`tarea` (
   `descripcion` VARCHAR(100) NOT NULL,
   `realizada` TINYINT(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`idtarea`),
-  INDEX `idproyecto_idx` (`idproyecto` ASC) VISIBLE,
   CONSTRAINT `idproyecto`
     FOREIGN KEY (`idproyecto`)
     REFERENCES `proyectofinal`.`proyecto` (`idproyecto`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+	ON DELETE CASCADE
+	ON UPDATE CASCADE);
     
-    ALTER TABLE `proyectofinal`.`tarea` 
-DROP FOREIGN KEY `idproyecto`;
-ALTER TABLE `proyectofinal`.`tarea` 
-ADD CONSTRAINT `idproyecto`
-  FOREIGN KEY (`idproyecto`)
-  REFERENCES `proyectofinal`.`proyecto` (`idproyecto`)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE;
-  
+    
 SET GLOBAL time_zone = '+1:00';
 
 insert into tipoUsuario values (1, 'creador');
