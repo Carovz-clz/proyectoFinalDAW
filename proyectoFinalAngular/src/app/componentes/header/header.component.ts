@@ -8,7 +8,7 @@ import { LoginService } from '../../shared/servicios/login.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  usuario = '';
+  usuario = 'prueba';
   isCollapsed = true;
 
   constructor(private loginService: LoginService, private router: Router) { }

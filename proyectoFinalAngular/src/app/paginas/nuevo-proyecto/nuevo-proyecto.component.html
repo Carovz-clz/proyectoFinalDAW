@@ -3,7 +3,7 @@
         <div class="col-12 spinner text-center" *ngIf="cargando">
             <app-loading-spinner></app-loading-spinner>
         </div>
-        <div class="col-7 divFormulario mt-5">
+        <div class="col-xs-12 col-md-7 divFormulario mt-5">
             
                        
             <form [formGroup]="formulario" (ngSubmit)="guardarNuevoProyecto()" *ngIf="!cargando">

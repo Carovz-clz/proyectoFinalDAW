@@ -5,12 +5,32 @@
     padding: auto;
 }
 
-.iconos {
-    display: grid;
-    grid-template-columns: 1fr;
-    text-align: center;
-    grid-row-gap: 0.5rem;
+@media screen and (min-width:768px) {
+    .iconos {
+        display: grid;
+        grid-template-columns: 1fr;
+        text-align: center;
+        grid-row-gap: 0.5rem;
+    }    
 }
+
+@media screen and (max-width:768px) {
+    .contenedorResponsive{
+        display: grid;
+        grid-template-columns: 100%;
+    } 
+    
+    .iconos {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        text-align: center;
+        grid-column-gap: 1.5rem;
+        margin-top: 1em;
+    }
+}
+
+
+
 
 .icono {
     font-size: 2rem;

@@ -1,12 +1,12 @@
 <div class="container mt-4">
-    <div class="col-8 ml-auto mr-auto">
+    <div class=" col-xs-12 col-md-8 ml-auto mr-auto">
         <h1 class="h3 text-center">Últimos proyectos</h1>
         <div *ngIf="proyectos.length > 0" >        
             <app-proyecto *ngFor="let proyectoEl of proyectos" [proyecto]="proyectoEl"></app-proyecto>
         </div>
         
         <div *ngIf="proyectos.length == 0">        
-            <p>No tiene proyectos actualmente</p>
+            <p class="text-center">No tiene proyectos actualmente</p>
         </div>
     </div>
   

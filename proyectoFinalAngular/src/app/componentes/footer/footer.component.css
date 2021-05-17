@@ -1,0 +1,12 @@
+.fondoFooter{
+    background-color: #343a40;
+    color: #686868;
+}
+
+.fondoFooter a {
+    color: #9a9da0;
+}
+
+.fondoFooter a:hover {
+    color: #17a2b8!important;
+}
