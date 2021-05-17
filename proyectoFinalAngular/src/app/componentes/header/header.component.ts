@@ -9,11 +9,16 @@ import { LoginService } from '../../shared/servicios/login.service';
 })
 export class HeaderComponent implements OnInit {
   usuario = '';
+  isCollapsed = true;
 
   constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
     this.usuario = this.loginService.getUsuario();
+  }
+
+  toggleMenu() {
+    this.isCollapsed = !this.isCollapsed;
   }
 
   cerrarSesion(){

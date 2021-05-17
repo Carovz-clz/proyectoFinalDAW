@@ -1,17 +1,19 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand ml-5" routerLink="inicio">ChekProject</a>
+    <a class="navbar-brand" routerLink="inicio">ChekProject</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" aria-expanded="!isCollapsed" (click)="toggleMenu()">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse d-flex" id="navbarNavDropdown">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown" [ngbCollapse]="isCollapsed">
         <ul class="navbar-nav ml-auto mr-5">
-            <li class="nav-item"  >
-                <a class="nav-link" routerLink='inicio' routerLinkActive="router-link-active">Inicio <span class="sr-only">(current)</span></a>
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="inicio">Inicio <span class="sr-only">(current)</span></a>
             </li>
+
             <li ngbDropdown class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle enlace" routerLinkActive="router-link-active"  id="" ngbDropdownToggle data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">Mis Proyectos</a>
+                <a class="nav-link dropdown-toggle enlace " id="navbarDropdownMenuLink" ngbDropdownToggle data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">Mis
+                    Proyectos</a>
                 <div ngbDropdownMenu class="dropdown-menu">
                     <a class="dropdown-item enlace" routerLink="misproyectos" ngbDropdownItem>Ver proyectos</a>
                     <a class="dropdown-item enlace" routerLink="nuevoproyecto" ngbDropdownItem>Crear proyecto</a>
@@ -20,14 +22,16 @@
             </li>
 
             <li ngbDropdown class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle enlace" id="" ngbDropdownToggle data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">{{ usuario }}</a>
+                <a class="nav-link dropdown-toggle enlace" id="navbarDropdownMenuLink" ngbDropdownToggle data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">Hola</a>
                 <div ngbDropdownMenu class="dropdown-menu">
                     <a class="dropdown-item enlace" routerLink="misdatos" ngbDropdownItem>Mis datos</a>
                     <div class="dropdown-divider enlace"></div>
                     <a class="dropdown-item enlace" ngbDropdownItem (click)="cerrarSesion()">Cerrar Sesión</a>
                 </div>
             </li>
+
         </ul>
     </div>
-</nav> 
+</nav>
+
