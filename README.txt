@@ -1,10 +1,13 @@
-Consideraciones previas:
-	- El inicio de sesión es simulado, no existe una sesión como tal ni tampoco comprobación de si el usuario existe en la base de datos.
-	  Está hecho de esta forma de manera provisional.
+================================== DESPLIEGUE ==================================
 
-	- Para ver el funcionamiento de las partes desarrolladas, hay que registrar un nuevo usuario antes de "iniciar sesión".
+=> DOCKER:
+	> docker network create miRed
+	> docker run -d --network miRed --name mi_mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=proyectofinal -e MYSQL_PASSWORD=root -p 3307:3306 carovz/img_bbdd
+	> docker run --network miRed --name mi_back -p 8080:8080 carovz/img_back
+	> docker run -d --name mi_front -p 7200:80 carovz/img_front
 
-	- Partes que se han desarrollado: alta de usuario (con comprobaciones), vista previa de los proyectos existentes y creación de proyectos.
+
+=> LOCAL:
 
 Requisitos: 
 	- Tener instalado mysql workbench.
@@ -20,7 +23,8 @@ Pasos:
 		> npm install --save bootstrap@4 //Para añadir los paquetes de bootstrap
 		> ng add @ng-bootstrap/ng-bootstrap //Para añadir los paquetes necesarios para los modales
 		> ng add @fortawesome/angular-fontawesome //elegir la primera opción para los iconos
-	 	> ng serve //Para compilar y ejecutar el código
+	 	> npm install moment --save 
+	 	> ng serve //Para compilar y ejecutar el código	 	 
 	-Abrir un navegador e introducir la dirección http://localhost:4200/
 
 
