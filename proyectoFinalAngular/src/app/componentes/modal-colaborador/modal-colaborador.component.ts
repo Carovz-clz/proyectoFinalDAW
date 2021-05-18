@@ -24,7 +24,6 @@ export class ModalColaboradorComponent implements OnInit, AfterViewInit {
     this.peticionesService.obtenerTodosLosUsuariosColaboresDeProyecto(this.idProyecto)
     .subscribe( response => {
       this.colaboradores = response;
-      console.log(response);
     });
 
     this.peticionesService.obtenerTodosLosUsuarios()

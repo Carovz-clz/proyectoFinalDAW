@@ -28,7 +28,6 @@ export class InicioComponent implements OnInit {
             return dateA < dateB;
           });
         }
-        console.log(this.proyectos);
         this.proyectos = this.proyectos.slice(0,2);
         
       })

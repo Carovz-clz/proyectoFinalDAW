@@ -6,12 +6,13 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version></version>
+		<version>2.4.4</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.carol</groupId>
-	<artifactId>checkproject</artifactId>
-	<name>checkproject</name>
+	<artifactId>proyectoFinalSpring</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>proyectoFinalSpring</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
@@ -95,6 +96,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>checkproject</finalName>
 	</build>
 
 </project>

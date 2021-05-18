@@ -34,7 +34,6 @@ export class EliminarProyectoComponent implements OnInit {
           });
         }
 
-        console.log(this.proyectos);
       })
   }
 
@@ -47,7 +46,6 @@ export class EliminarProyectoComponent implements OnInit {
     if (confirmacion) {
       this.peticionesService.eliminarProyectoPorId(this.idProyecto)
         .subscribe(response => {
-          console.log(response);
           this.modalConfirmacion = false;
           this.router.navigate(['/inicio']);
         })

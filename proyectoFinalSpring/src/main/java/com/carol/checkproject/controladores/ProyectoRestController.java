@@ -32,10 +32,7 @@ public class ProyectoRestController {
 	
 	@Autowired
 	private ProyectoRepository proyectoRepo;
-	
-	@Autowired
-	private TareaRepository tareaRepo;
-	
+		
 	@Autowired
 	private ProyectoDAO proyectoDao;
 	

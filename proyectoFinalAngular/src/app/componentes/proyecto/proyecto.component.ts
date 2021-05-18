@@ -26,7 +26,6 @@ export class ProyectoComponent implements OnInit {
   constructor(private peticionesService: PeticionesService, private router: Router) { }
 
   ngOnInit(): void { 
-    console.log(this.proyecto);
     this.tareas = this.proyecto.tareas;
     this.asignarEstiloBarraDeProgreso();
    }
@@ -38,10 +37,8 @@ export class ProyectoComponent implements OnInit {
 
   cambiarEstadoTarea(i){
     this.tareas[i].realizada = (this.tareas[i].realizada == 1) ? 0 : 1;
-    console.log({idtarea: this.tareas[i].idtarea, idproyecto: this.proyecto.idProyecto, descripcion: this.tareas[i].descripcion, realizada: this.tareas[i].realizada});
     this.peticionesService.cambiarEstadoTarea({idtarea: this.tareas[i].idtarea, idproyecto: this.proyecto.idProyecto, descripcion: this.tareas[i].descripcion, realizada: this.tareas[i].realizada})
       .subscribe( response => {
-        console.log(response);
       });
 
       this.asignarEstiloBarraDeProgreso();    
@@ -72,8 +69,7 @@ export class ProyectoComponent implements OnInit {
   }
 
   guardarProyecto(p){
-    console.log(this.proyecto);
-    
+        
     this.proyecto.nombreProyecto = p.nombreProyecto;
     this.proyecto.descripcion = p.descripcion;
 

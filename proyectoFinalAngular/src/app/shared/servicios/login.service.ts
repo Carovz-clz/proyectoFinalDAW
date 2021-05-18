@@ -14,7 +14,6 @@ export class LoginService {
   cambiarValorSesion(valor){
     this.sesion = valor;
     this.sesionIniciada.next(this.sesion);
-    console.log("Sesion"+this.sesion);
   }
 
   getSesionIniciada(){
