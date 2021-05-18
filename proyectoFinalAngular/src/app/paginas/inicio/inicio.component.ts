@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import * as moment from 'moment';
 import { LoginService } from 'src/app/shared/servicios/login.service';
 import { PeticionesService } from 'src/app/shared/servicios/peticiones.service';
 
@@ -20,16 +21,14 @@ export class InicioComponent implements OnInit {
       .subscribe(response => {
         this.proyectos = response;
 
-        if (this.proyectos.lenght > 0) {
-          this.proyectos = this.proyectos.sort((a, b) => {
-            var dateA = new Date(a.fecha).getTime();
-            var dateB = new Date(b.fecha).getTime();
-            return dateA < dateB ? 1 : -1;
+        if (this.proyectos.length > 0) {
+          this.proyectos.sort((a, b) => {
+            var dateA = moment(a.fecha, 'YYYY-MM-DD');
+            var dateB = moment(b.fecha, 'YYYY-MM-DD');            
+            return dateA < dateB;
           });
-
-          console.log(this.proyectos);
         }
-
+        console.log(this.proyectos);
         this.proyectos = this.proyectos.slice(0,2);
         
       })
