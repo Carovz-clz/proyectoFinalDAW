@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { LoginService } from './shared/servicios/login.service';
 
@@ -13,15 +14,19 @@ export class AppComponent implements OnInit, OnDestroy{
   sesion: boolean = false;
   subscripcion: Subscription;
 
-  constructor(private loginService: LoginService){}
+  constructor(private loginService: LoginService, private router: Router){}
   
 
   ngOnInit(): void {
     this.sesionIniciada = this.loginService.getSesionIniciada();
     this.subscripcion = this.sesionIniciada.subscribe(sesion => this.sesion = sesion);
+
+    if(this.sesion == false){
+      this.router.navigate(['login']);
+    }
   }
 
   ngOnDestroy(): void {
-    this.subscripcion.unsubscribe();
+    this.subscripcion.unsubscribe();    
   }
 }
